@@ -1,3 +1,5 @@
+// === RECIPES DATA ===
+
 module.exports = [
     {
       image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/burger.png',

@@ -1,3 +1,5 @@
+// === Server and Template Engine ===
+
 const express = require('express')
 const nunjucks = require('nunjucks')
 

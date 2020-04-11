@@ -1,17 +1,35 @@
+ /* === IMPORTAÇÃO === */
+ 
  @import "https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap";
 
+/* === "ZERANDO" === */
 * {
     margin: 0;
     padding: 0;
     border: 0;
     text-decoration: none;
 }
+
+ /* === HEADER === */
+
+header{
+    width: 940px;
+    display: flex;
+    margin: 28px auto; 
+
+}
+
 .header-menu {
     display: grid;
     grid-template-columns: 1fr 3fr;
     gap: 100px;
 
 }
+
+.header-links {
+    padding: 5px;
+}
+
 .header-list a {
     font-size: 16px;
     color: #111111;
@@ -19,37 +37,50 @@
     margin: 0 20px;
 }
 
-#sobre {
-    font-weight: bold;
-    display: inline;
-}
-
-#receitas {
-    font-weight: bold;
-    display: inline;
-}
-
-
-
-.links {
-    padding: 5px;
-}
-
 .header-list li {
     display: inline;
     list-style: none;
-
 }
 
+.header-menu img:hover {
+    filter: brightness(1000%)
+}
 
+#header-about {
+    font-weight: bold;
+    display: inline;
+}
 
-header{
-    width: 940px;
+#header-recipes {
+    font-weight: bold;
+    display: inline;
+}
+
+/* === BODY === */
+body {
+    font-family: 'Roboto', sans-serif;
     display: flex;
-    margin: 28px auto;
-    
-
+    flex-direction: column;
 }
+
+/* === FOOTER === */
+footer {
+    background: #EEEEEE;
+    height: 62px;
+    width: 100%;
+    margin-top: 28px;
+}
+
+footer p {
+    font-size: 14px;
+    color: #999999;
+    text-align: center;
+    padding: 20px;
+    font-family: Roboto-Regular;
+}
+
+/* === BANNER === */
+
 .banner {
     background: #FBDFDB;
     border-radius: 30px;
@@ -63,15 +94,6 @@ header{
     position: relative;
 }
 
-.banner img {
-    position: absolute;
-    top: 66px;
-    right: 100px;  
-}
-
-.header-menu img:hover {
-    filter: brightness(1000%)
-}
 .banner h1{
     position: absolute;
     width: 305px;
@@ -81,6 +103,12 @@ header{
     top: 117px;
     bottom: 211px; 
     left: 60px;
+}
+
+.banner img {
+    position: absolute;
+    top: 66px;
+    right: 100px;  
 }
 
 .banner p{
@@ -96,31 +124,8 @@ header{
     left: 60px;
 }
 
-body {
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    flex-direction: column;
-}
-
-footer {
-    background: #EEEEEE;
-    height: 62px;
-    width: 100%;
-    margin-top: 28px;
-}
-
-
-footer p {
-    font-size: 14px;
-    color: #999999;
-    text-align: center;
-    padding: 20px;
-    font-family: Roboto-Regular;
-}
-
  /* ===== MENU ==== */
 
- 
  .menu {
     width: 940px;
     margin: 0 auto;
@@ -134,25 +139,25 @@ footer p {
     margin-bottom: 20px;
  }
 
- .products-container {
+ .menu-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
     
  }
 
-.option-img img {
+.recipe-img img {
     border-radius: 15px;
     width: 300px;
     height: 140px;
  }  
 
- .option-img:hover {
+ .recipe-img:hover {
     filter: brightness(80%);
     cursor: pointer;
  }  
 
- .option-info h3 {
+ .recipe-info h3 {
     font-size: 18px;
     color: #111111;
     margin-top: 20px;
@@ -160,12 +165,17 @@ footer p {
     font-weight: 400;
  }
 
- .option-info p{
+ .recipe-info p{
     font-size: 14px;
     color: #777777;
 }
 
-/* ==== PAGINA SOBRE ==== */
+#menu-recipes {
+    margin-top: 50px;
+}
+
+
+/* ==== TEXTS ABOUT ==== */ 
 
 .texts {
     width: 940px;
@@ -177,6 +187,10 @@ footer p {
     line-height: 28px;
 }
 
+#title-about {
+    margin-top: 50px;
+}
+
 .texts h2 {
     margin-bottom: 20px;
 }
@@ -185,56 +199,13 @@ footer p {
     font-size: 18px;
     color: #444444;
 }
-#text-receitas {
-    margin-bottom: 50px;
-}
 
 .text-container-final {
+    margin-bottom: 50px;
     line-height: 28px;
 }
 
-#titulo-sobre {
-    margin-top: 50px;
-}
-
-/* ===== RECEITAS ===== */
-
-#menu-receitas {
-    margin-top: 50px;
-}
-
-
-
-.titulo {
-    font-size: 24px;
-    color: #111111;
-    text-align: center;
-    position: absolute;
-    top: 250px;
-    /* left: 164px;
-    right: 164px; */
-    font-family: 'Roboto', sans-serif;
-    width: 100%;
-    margin: 0 auto;
-
-}
-
-.autor {
-    font-size: 18px;
-    color: #777777;
-    text-align: center;
-    position: absolute;
-    top: 283px;
-    bottom: 109px;
-    /* left: 257px;
-    right: 257px; */
-    font-family: 'Roboto', sans-serif;
-    width: 100%;
-    margin: 0 auto;
-
-
-}
-/* ===== PAG DETALHES DA RECEITA ====== */
+/* ===== PAGE RECIPE ====== */
 .detail-container {
     position: relative;
     width: 940px;
@@ -244,18 +215,6 @@ footer p {
     color: #444444;
     line-height: 28px;
 
-}
-
-.ingredients-bottom, .preparation-bottom {
-    cursor: pointer;
-}
-
-.ingredients-list.desactive {
-    display: none;
-}
-
-.preparation-list.desactive {
-    display: none;
 }
 
 .banner-image img {
@@ -281,22 +240,6 @@ footer p {
     margin-top: 4px;
 }
 
-.banner-info h1 {
-    font-family: Roboto-Bold;
-    font-size: 36px;
-    color: #111111;
-    text-align: center;
-    margin-top: 50px;
-}
-
-.banner-info h2 {
-    font-family: Roboto-Regular;
-    font-size: 20px;
-    color: #777777;
-    text-align: center;
-    margin-top: 4px;
-}
-
 .title {
     margin-bottom: 20px;
     margin-top: 50px;
@@ -318,5 +261,17 @@ footer p {
     display: inline;
     margin-left: 8px;
 
+}
 
+/* BOTTOM ESCONDER e MOSTRAR */
+.ingredients-bottom, .preparation-bottom {
+    cursor: pointer;
+}
+
+.ingredients-list.desactive {
+    display: none;
+}
+
+.preparation-list.desactive {
+    display: none;
 }

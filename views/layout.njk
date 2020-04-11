@@ -13,10 +13,10 @@
     <header>
         <div class="header-menu">
             <div class="logo"> <a href="/"><img src="/logo.png" alt="logo"></a></div>
-            <div class="links"> 
+            <div class="header-links"> 
                 <ul class="header-list">
-                        <li><a href="/about">{% block idSobre %}Sobre{% endblock idSobre %}</a></li>
-                        <li><a href="/recipes">{% block idReceitas %}Receitas{% endblock idReceitas %}</a></li>
+                        <li><a href="/about">{% block idAbout %}Sobre{% endblock idAbout %}</a></li>
+                        <li><a href="/recipes">{% block idRecipes%}Receitas{% endblock idRecipes %}</a></li>
                     </ul>
                 </div>
         </div>
@@ -25,11 +25,11 @@
     {% block content %}
     {% endblock content %}
    
-   <div id="footer">
-        <footer>
-            <p>Todos os diretos reservados, receitas Foodfy.</p>
-        </footer>
-    </div>
+   
+    <footer>
+        <p>Todos os diretos reservados, receitas Foodfy.</p>
+    </footer>
+   
     <script src="/scripts.js"></script>
 
 </body>

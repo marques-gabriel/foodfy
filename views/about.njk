@@ -4,29 +4,29 @@
     <title> Sobre </title>
 {% endblock title %}
 
-{% block idSobre %}
-    <div id="sobre">Sobre</div>
-{% endblock idSobre %}
+{% block idAbout %}
+    <div id="header-about">Sobre</div>
+{% endblock idAbout %}
 
 {% block content %}
 
     <section class="texts">
 
-            <h2 id="titulo-sobre">{{about.title1}}</h2>
-        <div class="text-container" id="text-sobre">
+            <h2 id="title-about">{{about.title1}}</h2>
+        <div class="text-container">
             <p>{{about.p1}}</p>
             <p>{{about.p2}}</p>
         </div>
 
             <h2>{{about.title2}}</h2>
-        <div class="text-container" id="text-comeco">
+        <div class="text-container">
             
             <p>{{about.p1}}</p>
             <p>{{about.p2}}</p>
         </div>
 
             <h2>{{about.title3}}</h2>
-        <div class="text-container-final" id="text-receitas">
+        <div class="text-container-final">
             <p>{{about.p2}}</p>
         </div>
     </section>

@@ -1,16 +1,18 @@
 
-//  === CLICK RECEITA ===
+//  === CLICK RECIPE ===
 
-const products = document.querySelectorAll('.option-container')
+const recipes = document.querySelectorAll('.recipe-container')
 
-for (let productIndex = 0; products.length; productIndex++) {
-    products[productIndex].addEventListener("click", function() {
-        window.location.href = `/recipe/${productIndex}`
+for (let recipeIndex = 0; recipes.length; recipeIndex++) {
+    recipes[recipeIndex].addEventListener("click", function() {
+        window.location.href = `/recipe/${recipeIndex}`
     })
 }
 
 // === MOSTRAR/ESCONDER ===
 
+
+//Ingredients
 const ingredientsBottom = document.querySelector('.ingredients-bottom')
 const ingredientsList = document.querySelector('.ingredients-list')
 
@@ -25,7 +27,7 @@ ingredientsBottom.addEventListener("click", function() {
 
 })
 
-
+//Preparation
 const preparationBottom = document.querySelector('.preparation-bottom')
 const preparationList = document.querySelector('.preparation-list')
 

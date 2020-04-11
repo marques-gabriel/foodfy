@@ -6,31 +6,32 @@
 
 {% block content %}
 
-    <section class="banner">
+    <section class="banner"> 
         <div class="banner-content">
 
             <h1>{{home.title}}</h1>
-            <img src="{{home.img}}" alt="" id="chef">
+            <img src="{{home.img}}" alt="Chef" id="chef">
             <p>{{home.text}}}</p>
+
         </div>
 
     </section>
 
 
     <section class="menu">
-        <h2 id="mais-acessadas">{{home.subTitle}}</h2>
+        <h2>{{home.subTitle}}</h2>
 
-        <div class="products-container">
+        <div class="menu-container">
 
             {% for item in items %}
             
-                <div class="option-container" id="">
-                    <div class="option-img">
+                <div class="recipe-container" id="">
+                    <div class="recipe-img">
                         <img src="{{item.image}}" alt="">
                     </div>
-                    <div class="option-info">
-                        <h3 class="option-title">{{item.title}}</h3>
-                        <p class="option-autor">{{item.author}}</p>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">{{item.title}}</h3>
+                        <p class="recipe-autor">{{item.author}}</p>
                     </div>
                 </div>
 

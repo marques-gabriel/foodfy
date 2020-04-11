@@ -24,7 +24,7 @@ server.get("/", function(req, res) {
     const home = {
         title: "As melhores receitas",
         text: "Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.",
-        img: "https://ap.imagensbrasil.org/images/2020/02/15/chef.png",
+        img: "/chef.png",
         subTitle: "Mais Acessadas"
 
     }

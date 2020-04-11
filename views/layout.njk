@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/styles.css">
+
+    {% block title %}
+    {% endblock title %}
+
+</head>
+
+<body>
+    <header>
+        <div class="header-menu">
+            <div class="logo"> <a href="/"><img src="https://ap.imagensbrasil.org/images/2020/02/15/logo.png" alt="logo"></a></div>
+            <div class="links"> 
+                <ul class="header-list">
+                        <li><a href="/about">{% block idSobre %}Sobre{% endblock idSobre %}</a></li>
+                        <li><a href="/recipes">{% block idReceitas %}Receitas{% endblock idReceitas %}</a></li>
+                    </ul>
+                </div>
+        </div>
+    </header>
+
+    {% block content %}
+    {% endblock content %}
+   
+   <div id="footer">
+        <footer>
+            <p>Todos os diretos reservados, receitas Foodfy.</p>
+        </footer>
+    </div>
+    <script src="/scripts.js"></script>
+
+</body>
+
+
+</html>

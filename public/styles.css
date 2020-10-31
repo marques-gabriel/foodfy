@@ -264,7 +264,7 @@ footer p {
 }
 
 /* BOTTOM ESCONDER e MOSTRAR */
-.ingredients-bottom, .preparation-bottom {
+.ingredients-bottom, .preparation-bottom, .info-bottom{
     cursor: pointer;
 }
 
@@ -273,5 +273,9 @@ footer p {
 }
 
 .preparation-list.desactive {
+    display: none;
+}
+
+.information.desactive {
     display: none;
 }

@@ -43,6 +43,24 @@ preparationBottom.addEventListener("click", function() {
 
 })
 
+//Information
+const infoBottom = document.querySelector('.info-bottom')
+const information = document.querySelector('.information')
+
+infoBottom.addEventListener("click", function() {
+    information.classList.toggle('desactive')
+
+    if (information.classList.contains('desactive')) {
+        infoBottom.innerHTML = "MOSTRAR"
+
+    } else {
+        infoBottom.innerHTML = "ESCONDER"
+    }
+})
+
+
+
+
     
 
    

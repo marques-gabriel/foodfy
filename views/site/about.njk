@@ -1,0 +1,35 @@
+{% extends "site/layout.njk" %}
+
+{% block title %}
+    <title> Sobre </title>
+{% endblock title %}
+
+{% block idAbout %}
+    <div id="header-about">Sobre</div>
+{% endblock idAbout %}
+
+{% block content %}
+
+    <section class="texts">
+
+            <h2 id="title-about">{{about.title1}}</h2>
+        <div class="text-container">
+            <p>{{about.p1}}</p>
+            <p>{{about.p2}}</p>
+        </div>
+
+            <h2>{{about.title2}}</h2>
+        <div class="text-container">
+            
+            <p>{{about.p1}}</p>
+            <p>{{about.p2}}</p>
+        </div>
+
+            <h2>{{about.title3}}</h2>
+        <div class="text-container-final">
+            <p>{{about.p2}}</p>
+        </div>
+    </section>
+    
+
+{% endblock content %}

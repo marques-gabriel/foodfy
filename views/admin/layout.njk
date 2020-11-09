@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/styles.css">
+
+        {% block title %}
+        {% endblock title %}
+
+    </head>
+
+    <body>
+        <header class="header-admin">
+            <div class="logo-admin">
+                <a href="/admin/recipes"><img src="/logo-admin.png" alt="logo"></a>
+            </div>
+        </header>
+
+        {% block content %}
+        {% endblock content %}
+    
+        <script src="/scripts-admin.js"></script>
+
+    </body>
+
+
+</html>

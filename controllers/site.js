@@ -1,4 +1,4 @@
-const recipesData = require('../data')
+const recipesData = require('../data.json')
 
 
 exports.index = function(req, res) {
@@ -10,12 +10,12 @@ exports.index = function(req, res) {
 
     }
 
-    return res.render("site/home", {home, items: recipesData} )
+    return res.render("site/home", {home, items: recipesData.recipes} )
 }
 
 exports.recipes = function(req, res) {
 
-    return res.render("site/recipes", {items: recipesData} )
+    return res.render("site/recipes", {items: recipesData.recipes} )
 }
 
 exports.about = function(req, res) {
@@ -33,7 +33,10 @@ exports.about = function(req, res) {
 exports.recipe = function (req, res) {
 
     const recipeIndex = req.params.index
-    const recipe = recipesData[recipeIndex] // Array de receitas carregadas do data.js
+    const recipe = recipesData.recipes[recipeIndex] // Array de receitas carregadas do data.js
+
+    if (!recipe) return res.send('Recipe not found')
+
 
     const titles = {
         ingredients: "Ingredientes",

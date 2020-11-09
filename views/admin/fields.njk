@@ -1,0 +1,49 @@
+<div class="item_title">Imagem da receita</div>
+<div class="item">
+    <div>
+        <input type="url" name="image"
+        value = "{{recipe.image}}"
+        >
+    </div>
+</div>
+
+<div class="item_title">Ingredientes</div>
+<div id="ingredients">
+  
+    
+    {% for ingredient in recipe.ingredients %}
+      <div class="ingredient">
+          <input type="text" name="ingredients[]" value="{{ingredient}}" placeholder="Novo ingrediente"/>
+      </div>
+    {% endfor %}
+    <div class="ingredient">
+      <input type="text" name="ingredients[]" value="{{ingredient}}" placeholder="Novo ingrediente"/>
+    </div>
+
+</div>
+<button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
+
+<div class="item_title">Modo de preparo</div>
+<div id="preparations">
+
+    {% for preparation in recipe.preparation %}
+      <div class="preparation">
+        <input type="text" name="preparation[]" value="{{preparation}}" placeholder="Novo passo" />
+      </div>
+    {% endfor %}
+    <div class="preparation">
+        <input type="text" name="preparation[]" value="{{preparation}}" placeholder="Novo passo" />
+    </div>
+
+
+</div>
+<button type="button" class="add-preparation">Adicionar novo passo</button>
+
+<div class="item_title">Informações adicionais</div>
+<div class="item last-item">
+    <div>
+        <textarea name="information">
+          {{recipe.information}}
+        </textarea>
+    </div>
+</div>

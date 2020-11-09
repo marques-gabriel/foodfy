@@ -1,0 +1,34 @@
+{% extends "admin/layout.njk" %}
+
+{% block title %}
+    <title> Receitas </title>
+{% endblock title %}
+
+{% block content %}
+
+    <section class="menu menu-admin">
+
+        <h3>Gerenciar receitas</h3>
+        <div class="menu-container-admin">
+
+            {% for recipe in recipes %}    
+            <div class="recipe-container-admin" id="">
+                <div class="recipe-img-admin">
+                    <img src="{{recipe.image}}" alt="">
+                </div>
+                <div class="recipe-info" id="">
+                    <h3 class="recipe-title">{{recipe.title}}</h3>
+                    <p class="recipe-author">{{recipe.author}}</p>
+                </div>
+                <button type="button" class="button-visualizar">Visualizar</button>
+            </div>    
+            {% endfor %}
+    
+        </div>
+
+
+
+    </section>
+        
+        
+{% endblock content %}

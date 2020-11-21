@@ -10,6 +10,11 @@
     text-decoration: none;
 }
 
+/* Html e body */
+html, body {
+  min-height: 100vh;
+}
+
  /* === HEADER === */
 
 header{
@@ -25,6 +30,8 @@ header{
 
 }
 
+
+
 .header-links {
     padding: 5px;
 }
@@ -34,11 +41,27 @@ header{
     color: #111111;
     text-decoration: none;
     margin: 0 20px;
+    position: relative;
 }
 
 .header-list li {
     display: inline;
     list-style: none;
+}
+
+.header-list li a::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: black;
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+}
+
+.header-list li a:hover::after {
+    width: 100%;
+    transition: width 200ms ease-in-out 30ms;
 }
 
 .header-menu img:hover {
@@ -56,6 +79,7 @@ header{
 }
 
 /* === BODY === */
+
 body {
     font-family: 'Roboto', sans-serif;
     display: flex;
@@ -67,7 +91,7 @@ footer {
     background: #EEEEEE;
     height: 62px;
     width: 100%;
-    margin-top: 28px;
+    margin-top: auto;
 }
 
 footer p {
@@ -162,6 +186,8 @@ footer p {
     margin-top: 20px;
     margin-bottom: 5px;
     font-weight: 400;
+    min-width: 156px;
+    
  }
 
  .recipe-info p{
@@ -262,6 +288,10 @@ footer p {
 
 }
 
+.information {
+    margin-bottom: 38px;
+}
+
 /* BOTTOM ESCONDER e MOSTRAR */
 .ingredients-bottom, .preparation-bottom, .info-bottom{
     cursor: pointer;
@@ -279,7 +309,7 @@ footer p {
     display: none;
 }
 
-/* ============ STYLES ADMIN ==============*/ 
+/* =========================== STYLES ADMIN ==================================*/ 
 
 
  /* === HEADER === */
@@ -289,16 +319,65 @@ footer p {
     background-color: black;    
     width: 100%;
     height: 80px;
-    align-items: center;
+    display: flex;
 }
-.logo-admin {
-    /* position: absolute; */
+.header-admin-menu {
+    display: grid;
+    grid-template-columns: 0.1fr 3fr;
+    align-items: center;
+    gap: 50px;
     width: 940px;
     margin: 0 auto;
 }
+
+.header-list-admin li{
+    display: inline;
+    list-style: none;
+    margin-left: 30px;
+}
+
+.header-list-admin li a {
+    font-family: Roboto-Bold;
+    font-size: 15px;
+    color: #999999;
+}
+
+.logo-admin {
+    margin: 0;
+}
+
+.logo-admin img {
+    width: 90px;
+    height: 26px;
+}
+
 .logo-admin a img:hover {
     filter: brightness(60%)
 }
+
+.header-list-admin li a.active {
+    font-weight: bold;
+    color: white;
+}
+
+.header-list-admin li a {
+    position: relative;
+}
+.header-list-admin li a::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+}
+
+.header-list-admin li a:hover::after {
+    width: 100%;
+    transition: width 200ms ease-in-out 30ms;
+}
+
 
  /* === FORMULÁRIO === */
 
@@ -399,7 +478,7 @@ a#button-edit {
 
 #form-delete button[type = "submit"] {
     background: #DC4747;
-    margin-right:  189px;
+    margin-right:  150px;
 }
 
 #save-edit {
@@ -413,7 +492,6 @@ a#button-edit {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    align-items: center;
  }
 
  .menu-admin > h3 {
@@ -423,11 +501,11 @@ a#button-edit {
 
  .recipe-img-admin img {
     border-radius: 8.57px;
-    width: 300px;
-    height: 140px;
+    width: 172px;
+    height: 80px;
  }
 
- .button-visualizar {
+ .button-visualizar, .button-visualizar-chefs {
     font-family: Roboto-Bold;
     font-size: 14px;
     color: #6558C3;
@@ -436,4 +514,61 @@ a#button-edit {
     background: transparent;
     outline: none;
 
+ }
+
+ .recipe-container-admin {
+     display: grid;
+     grid-template-columns: 0.1fr 1fr;
+     gap: 20px;
+ }
+
+ .recipe-container-admin .recipe-info h3 {
+     margin-top: 0;
+ }
+
+ .item_title {
+    font-weight: bold;
+}
+
+ /* === LISTAR CHEFS === */
+
+
+ .menu-container-admin-chef {
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr 1fr;
+     gap: 40px;
+ }
+
+ .chef-img-admin img {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+ }
+
+ .chef-info h3 {
+    font-family: Roboto-Regular;
+    font-size: 18px;
+    color: #111111;
+    font-weight: normal;
+    min-width: 156px;
+ }
+
+ .chef-container-admin {
+    display: grid;
+    grid-template-columns: 0.1fr 1fr;
+    gap: 20px;
+    align-items: center;
+}
+
+ /* === DETALHES CHEF === */
+
+.banner-image-chef {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+ .banner-image-chef img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
  }

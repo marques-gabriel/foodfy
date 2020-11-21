@@ -2,14 +2,14 @@ const fs = require('fs')
 const recipesData = require('../data.json')
 
 exports.index = function(req, res) {
-    return res.render("admin/index", {recipes: recipesData.recipes})
+    return res.render("admin/recipes/index", {recipes: recipesData.recipes})
 }
 
 exports.create = function(req, res) {
 
 
 
-    return res.render("admin/create")
+    return res.render("admin/recipes/create")
 }
 
 exports.show = function(req, res) {
@@ -26,7 +26,7 @@ exports.show = function(req, res) {
 
     }
     
-    return res.render("admin/show", {titles, recipe, recipeIndex})
+    return res.render("admin/recipes/show", {titles, recipe, recipeIndex})
     
 }
 
@@ -37,7 +37,7 @@ exports.edit = function(req, res) {
 
     if (!recipe) return res.send('Recipe not found')
 
-    return res.render("admin/edit", {recipe, recipeIndex})
+    return res.render("admin/recipes/edit", {recipe, recipeIndex})
 }
 
 exports.post = function(req, res) {

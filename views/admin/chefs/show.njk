@@ -1,0 +1,52 @@
+{% extends "admin/layout.njk" %}
+
+{% block title %}
+    <title> Detalhes do chef </title>
+{% endblock title %}
+
+{% block content %}
+
+
+<div class="detail-container">
+
+    <h3> Chef: {{chef.name}}</h3>
+    <a href="/admin/chefs/{{chefIndex}}/edit" class="buttons" id="button-edit">Editar Chef</a>
+
+    <div class="banner-detail">
+        <div class="banner-image-chef">
+            <img src="{{chef.image}}" alt="">
+        </div>
+
+        <div class="banner-info">
+            <h1>{{chef.name}}</h1>
+            <h2>{{chef.recipes_total}}</h2>
+        </div>
+    </div>
+
+
+    <section class="menu menu-admin">
+
+        <h3> Receitas</h3>
+        <div class="menu-container-admin">
+
+            {% for recipe in recipes %}    
+            <div class="recipe-container-admin" id="">
+                <div class="recipe-img-admin">
+                    <img src="{{recipe.image}}" alt="">
+                </div>
+                <div class="recipe-info" id="">
+                    <h3 class="recipe-title">{{recipe.title}}</h3>
+                    <p class="recipe-author">{{recipe.author}}</p>
+                    <button type="button" class="button-visualizar">Visualizar</button>
+                </div>
+            </div>       
+            {% endfor %}
+            
+        </div>
+
+    </section>
+
+</div>
+
+
+{% endblock content %}

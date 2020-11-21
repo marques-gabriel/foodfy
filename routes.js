@@ -19,18 +19,23 @@ routes.get("/recipes", site.recipes)
 routes.get("/about", site.about)
 routes.get("/recipe/:index", site.recipe)
 
-// ADMIN
+// ==== ADMIN ====//
+
+// RECIPES
 
 routes.get("/admin/recipes/create", admin.create)
 routes.get("/admin/recipes/:index", admin.show)
 routes.get("/admin/recipes/:index/edit", admin.edit)
 routes.get("/admin/recipes", admin.index)
 
-
-
 routes.post("/admin/recipes", admin.post)
 routes.put("/admin/recipes", admin.put)
 routes.delete("/admin/recipes", admin.delete)
+
+// CHEFS
+
+
+
 
 
 module.exports = routes

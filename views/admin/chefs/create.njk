@@ -1,0 +1,16 @@
+{% extends "admin/layout.njk" %}
+
+{% block title %}
+    <title> Criando chef </title>
+{% endblock title %}
+
+{% block content %}
+
+    <form  class="card" action="/admin/chefs" method="POST">
+        <h3> Criando chef </h3>
+        <button class="buttons" type="submit">Salvar chef</button>
+        {% include 'admin/chefs/fields.njk' %}
+
+    </form>
+
+{% endblock content %}

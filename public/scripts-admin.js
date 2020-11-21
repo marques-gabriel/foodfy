@@ -1,4 +1,6 @@
 
+// Visualizar receitas 
+
 const buttonsRecipes = document.querySelectorAll('.button-visualizar')
 
 for (let recipeIndex = 0; buttonsRecipes.length; recipeIndex++) {
@@ -7,6 +9,7 @@ for (let recipeIndex = 0; buttonsRecipes.length; recipeIndex++) {
     })
 }
 
+// Adicionar e remover ingredientes
 function addIngredient() {
     const ingredients = document.querySelector("#ingredients")
     const fieldContainer = document.querySelectorAll(".ingredient")
@@ -20,13 +23,22 @@ function addIngredient() {
     // Deixa o valor do input vazio
     newField.children[0].value = ""
     ingredients.appendChild(newField)
-  }      
+}
+function removeIngredient() {
+    const ingredients = document.querySelector("#ingredients")
+    const fieldContainer = document.querySelectorAll(".ingredient")
+
+    if (fieldContainer.length == 1) return false
+    ingredients.removeChild(fieldContainer[fieldContainer.length - 1])
+}
   
   document.querySelector(".add-ingredient").addEventListener("click", addIngredient)
+  document.querySelector(".remove-ingredient").addEventListener("click", removeIngredient)
 
 
-  function addPreparation() {
-    const preparation = document.querySelector("#preparations")
+// Adicionar e remover modo de preparo
+function addPreparation() {
+    const preparations = document.querySelector("#preparations")
     const fieldContainer = document.querySelectorAll(".preparation")
   
     // Realiza um clone do último ingrediente adicionado
@@ -37,9 +49,18 @@ function addIngredient() {
   
     // Deixa o valor do input vazio
     newField.children[0].value = ""
-    preparation.appendChild(newField)
-  }      
-  
+    preparations.appendChild(newField)
+}     
+function removePreparation() {
+    const preparations = document.querySelector("#preparations")
+    const fieldContainer = document.querySelectorAll(".preparation")
+
+    if (fieldContainer.length == 1) return false
+    preparations.removeChild(fieldContainer[fieldContainer.length - 1])
+}
+
   document.querySelector(".add-preparation").addEventListener("click", addPreparation)
+  document.querySelector(".remove-preparation").addEventListener("click", removePreparation)
+
   
   

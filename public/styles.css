@@ -326,10 +326,11 @@ footer p {
     padding: 2px;
 }
 
-#ingredients, #preparations {
+.ingredient, .preparation {
     min-height: 49px;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
+    margin-top: 8px;
 }
 
 
@@ -354,6 +355,18 @@ input, textarea {
     background: white;
     padding-top: 15px;
     cursor: pointer;
+    outline: none;
+}
+
+.remove-ingredient, .remove-preparation{
+    font-family: Roboto-Bold;
+    font-size: 16px;
+    color: #DC4747;
+    background: white;
+    padding-top: 15px;
+    cursor: pointer;
+    outline: none;
+    margin-left: 8px;
 }
 
 .buttons {
@@ -367,6 +380,8 @@ input, textarea {
     color: #FFFFFF;
     padding: 9px 20px;
     cursor: pointer;
+    outline: none;
+
 }
 
  /* === DETALHES RECEITA === */
@@ -419,4 +434,6 @@ a#button-edit {
     margin-top: 5px;
     cursor: pointer;
     background: transparent;
+    outline: none;
+
  }

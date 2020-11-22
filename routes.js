@@ -18,6 +18,8 @@ routes.get("/home", site.index)
 routes.get("/recipes", site.recipes)
 routes.get("/about", site.about)
 routes.get("/recipe/:index", site.recipe)
+routes.get("/chefs", site.chefs)
+
 
 // ==== ADMIN ====//
 

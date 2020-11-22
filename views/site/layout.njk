@@ -17,9 +17,14 @@
                 <ul class="header-list">
                         <li><a href="/about">{% block idAbout %}Sobre{% endblock idAbout %}</a></li>
                         <li><a href="/recipes">{% block idRecipes%}Receitas{% endblock idRecipes %}</a></li>
+                        <li><a href="/chefs">{% block idChefs%}Chefs{% endblock idChefs %}</a></li>
+
                     </ul>
                 </div>
         </div>
+
+        {% block header %}
+        {% endblock header %}
     </header>
 
     {% block content %}

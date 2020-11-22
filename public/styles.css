@@ -25,12 +25,10 @@ header{
 
 .header-menu {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 5fr;
     gap: 100px;
 
 }
-
-
 
 .header-links {
     padding: 5px;
@@ -76,6 +74,42 @@ header{
 #header-recipes {
     font-weight: bold;
     display: inline;
+}
+
+#header-chefs {
+    font-weight: bold;
+    display: inline;
+}
+
+ /* FILTER */
+
+
+.header form {
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    align-items: center;
+    grid-gap: 8px;
+}
+
+.header form input {
+    border: 1px solid #DDDDDD;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    width: 246px;
+    height: 37px;
+    font-size: 14px;
+    border-radius: 4px;
+
+}
+
+.header form button {
+    background: #6558C3;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px 15px;
+    color: white;
+    outline: none;
+    font-size: 16px;
 }
 
 /* === BODY === */
@@ -199,6 +233,13 @@ footer p {
     margin-top: 50px;
 }
 
+/* SEARCH  */
+
+#menu-search > h3 {
+    padding-bottom: 20px;
+    padding-top: 32px;
+}
+
 
 /* ==== TEXTS ABOUT ==== */ 
 
@@ -309,6 +350,43 @@ footer p {
     display: none;
 }
 
+
+/* === LISTAR CHEFS === */
+
+
+.menu-container-chef {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-top: 25px;
+
+}
+
+.chef-img img {
+   border-radius: 50%;
+   width: 64px;
+   height: 64px;
+}
+
+.chef-info h3 {
+   font-family: Roboto-Regular;
+   font-size: 18px;
+   color: #111111;
+   font-weight: normal;
+   min-width: 156px;
+}
+
+.chef-info p{
+    font-size: 14px;
+    color: #777777;
+}
+
+.chef-container {
+   display: grid;
+   grid-template-columns: 0.1fr 1fr;
+   gap: 20px;
+   align-items: center;
+}
 /* =========================== STYLES ADMIN ==================================*/ 
 
 

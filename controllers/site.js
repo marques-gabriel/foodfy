@@ -30,6 +30,12 @@ exports.about = function(req, res) {
     return res.render("site/about", {about})
 }
 
+exports.chefs = function(req, res) {
+    
+    return res.render("site/chefs")
+}
+
+
 exports.recipe = function (req, res) {
 
     const recipeIndex = req.params.index

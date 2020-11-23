@@ -1,14 +1,3 @@
-
-//  === CLICK RECIPE ===
-
-const recipes = document.querySelectorAll('.recipe-container')
-
-for (let recipeIndex = 0; recipes.length; recipeIndex++) {
-    recipes[recipeIndex].addEventListener("click", function() {
-        window.location.href = `/recipe/${recipeIndex}`
-    })
-}
-
 // === MOSTRAR/ESCONDER ===
 
 

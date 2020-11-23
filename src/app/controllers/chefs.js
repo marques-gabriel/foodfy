@@ -67,6 +67,8 @@ module.exports = {
 
     delete(req, res) {
         Chef.delete(req.body.id, function() {
+
+            //Chefs que possuem receitas não podem ser deletados.
             return res.redirect("/admin/chefs")
         })
     }

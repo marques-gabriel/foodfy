@@ -44,11 +44,11 @@
             
                 <div class="recipe-container" id="">
                     <div class="recipe-img">
-                        <img src="{{item.image}}" alt="">
+                        <a href="/recipe/{{item.id}}"><img src="{{item.image}}" alt=""></a>
                     </div>
                     <div class="recipe-info">
                         <h3 class="recipe-title">{{item.title}}</h3>
-                        <p class="recipe-autor">{{item.author}}</p>
+                        <p class="recipe-autor">por {{item.chef_name}}</p>
                     </div>
                 </div>
 

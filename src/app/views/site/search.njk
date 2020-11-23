@@ -31,18 +31,18 @@
 
     <section class="menu" id="menu-recipes">
 
-        <h3>Buscando por</h3>
+        <h3 class="filter-title">Buscando por "{{filter}}"</h3>
 
         <div class="menu-container">
         {% for item in items %}
         
             <div class="recipe-container" id="">
                 <div class="recipe-img">
-                    <img src="{{item.image}}" alt="">
+                    <a href="/recipe/{{item.id}}"><img src="{{item.image}}" alt=""></a>
                 </div>
                 <div class="recipe-info" id="">
                     <h3 class="recipe-title">{{item.title}}</h3>
-                    <p class="recipe-author">{{item.author}}</p>
+                    <p class="recipe-author">por {{item.chef_name}}</p>
                 </div>
             </div>
 
@@ -52,5 +52,14 @@
         </div>
 
     </section>
+
+    <div class="pagination"
+        data-page={{pagination.page}}
+        data-total={{pagination.total}}
+        data-filter={{filter}}
+    ></div>
+
+    <script src="/pagination.js"></script>
+
 
 {% endblock content %}

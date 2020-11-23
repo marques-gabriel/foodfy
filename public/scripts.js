@@ -51,5 +51,3 @@ infoBottom.addEventListener("click", function() {
 
 
     
-
-   

@@ -2,10 +2,33 @@ const Recipe = require ('../models/Recipe')
 
 module.exports = {
     index(req, res) {
-        Recipe.all(function(recipes) {
-            return res.render("admin/recipes/index", {recipes})
-            
-        })
+
+        let { filter, page, limit } = req.query
+            page = page || 1
+            limit = limit || 6
+            let offset = limit * (page - 1)
+
+            const params = {
+                filter,
+                page,
+                limit,
+                offset,
+                callback(recipes) {
+                    if(recipes) {
+                        const pagination = {
+                            total: Math.ceil (recipes[0].total / limit),
+                            page
+                        }
+
+                        return res.render("admin/recipes/index",{ recipes, pagination,filter} )
+
+                    } else {
+                        return res.send("Não há receitas cadastradas")
+                    }
+                }
+            }
+
+            Recipe.paginate(params)
     },
 
     create(req, res) {

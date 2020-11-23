@@ -21,6 +21,7 @@ routes.get("/recipes", site.recipes)
 routes.get("/about", site.about)
 routes.get("/recipe/:id", site.recipe)
 routes.get("/chefs", site.chefs)
+routes.get("/search", site.search)
 
 
 // ==== ADMIN ====//

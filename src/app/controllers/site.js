@@ -4,26 +4,73 @@ const Chef = require ('../models/Chef')
 module.exports = {
 
     index(req, res) {
-        const home = {
-            title: "As melhores receitas",
-            text: "Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.",
-            img: "/chef.png",
-            subTitle: "Mais Acessadas"
-    
-        }
 
-        Recipe.all(function(recipes) {
-            return res.render("site/home", {home, items: recipes})
-            
-        })
+        let { filter, page, limit } = req.query
+            page = page || 1
+            limit = limit || 6
+            let offset = limit * (page - 1)
+
+            const params = {
+                filter,
+                page,
+                limit,
+                offset,
+                callback(recipes) {
+                    if(recipes) {
+                        const pagination = {
+                            total: Math.ceil (recipes[0].total / limit),
+                            page
+                        }
+
+                        const home = {
+                            title: "As melhores receitas",
+                            text: "Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.",
+                            img: "/chef.png",
+                            subTitle: "Mais Acessadas"
+                    
+                        }
+
+                        return res.render("site/home",{home, items: recipes, pagination,filter} )
+
+                    } else {
+                        return res.send("Não há receitas cadastradas")
+                    }
+                }
+            }
+
+            Recipe.paginate(params)
+
     },
 
     recipes(req, res) {
 
-        Recipe.all(function(recipes) {
-            return res.render("site/recipes", { items: recipes})
-            
-        })
+        let { filter, page, limit } = req.query
+            page = page || 1
+            limit = limit || 6
+            let offset = limit * (page - 1)
+
+            const params = {
+                filter,
+                page,
+                limit,
+                offset,
+                callback(recipes) {
+                    if(recipes) {
+                        const pagination = {
+                            total: Math.ceil (recipes[0].total / limit),
+                            page
+                        }
+
+                        return res.render("site/recipes",{ items: recipes, pagination,filter} )
+
+                    } else {
+                        return res.send("Não há receitas cadastradas")
+                    }
+                }
+            }
+
+            Recipe.paginate(params)
+
     },
 
     about(req, res) {
@@ -57,5 +104,37 @@ module.exports = {
         Chef.all(function(chefs) {
             return res.render("site/chefs", {chefs})
         })
+    },
+
+    search(req, res) {
+
+
+        let { filter, page, limit } = req.query
+    
+        page = page || 1
+        limit = limit || 6
+        let offset = limit * (page - 1)
+
+        const params = {
+            filter,
+            page,
+            limit,
+            offset,
+            callback(recipes) {
+                if(recipes) {
+                    const pagination = {
+                        total: Math.ceil (recipes[0].total / limit),
+                        page
+                    }
+                    return res.render("site/search",{items: recipes, pagination,filter} )
+                } else {
+                    return res.render("site/search",{ filter } )
+                }
+            }
+        }
+
+        Recipe.paginate(params)
+
+
     }
 }

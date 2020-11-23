@@ -559,7 +559,7 @@ a#button-edit {
     top: 50px;
  }
 
-#form-delete button[type = "submit"] {
+.form-delete button[type = "submit"] {
     background: #DC4747;
     margin-right:  150px;
 }

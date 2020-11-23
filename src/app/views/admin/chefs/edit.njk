@@ -27,7 +27,7 @@
         >
     </form>
 
-    <form id="form-delete" action="/admin/chefs?_method=DELETE" method="post">
+    <form class="form-delete" action="/admin/chefs?_method=DELETE" method="post">
         <input 
             type="hidden" 
             name="id" 
@@ -36,7 +36,7 @@
         <button class="buttons" type="submit">Deletar</button>
     </form>
 
-    {% include "../../confirm.njk"%}
+    {% include "../../delete-chef.njk"%}
 
 </div>
 

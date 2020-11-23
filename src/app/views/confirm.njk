@@ -1,15 +1,15 @@
 <script>
-    {# const formDelete = document.querySelector("#form-delete") #}
+    const formDelete = document.querySelector("#form-delete")
     const recipes = document.getElementById("recipes-total").value
 
 
     formDelete.addEventListener("submit", function(event){
 
-        {# if (recipes != 0) {
+        if (recipes != 0) {
             alert("Chefs que possuem receitas não podem ser deletados.")
             event.preventDefault()
             return
-        } #}
+        }
 
         const confirmation = confirm("Deseja Deletar?")
 

@@ -10,16 +10,16 @@
 <div class="detail-container">
 
     <h3> Chef: {{chef.name}}</h3>
-    <a href="/admin/chefs/{{chefIndex}}/edit" class="buttons" id="button-edit">Editar Chef</a>
+    <a href="/admin/chefs/{{chef.id}}/edit" class="buttons" id="button-edit">Editar Chef</a>
 
     <div class="banner-detail">
         <div class="banner-image-chef">
-            <img src="{{chef.image}}" alt="">
+            <img src="{{chef.avatar_url}}" alt="">
         </div>
 
         <div class="banner-info">
             <h1>{{chef.name}}</h1>
-            <h2>{{chef.recipes_total}}</h2>
+            <h2>{{chef.total_recipes}} receitas</h2>
         </div>
     </div>
 
@@ -36,8 +36,8 @@
                 </div>
                 <div class="recipe-info" id="">
                     <h3 class="recipe-title">{{recipe.title}}</h3>
-                    <p class="recipe-author">{{recipe.author}}</p>
-                    <button type="button" class="button-visualizar">Visualizar</button>
+                    <p class="recipe-author">{{recipe.chef_name}}</p>
+                    <a class="button-visualizar" href="/admin/recipes/{{recipe.id}}"> Visualizar </a>
                 </div>
             </div>       
             {% endfor %}
@@ -50,3 +50,7 @@
 
 
 {% endblock content %}
+
+
+<p class="recipe-author">por {{recipe.chef_name}}</p>
+                    <a class="button-visualizar"href="/admin/recipes/{{recipe.id}}"> Visualizar </a>

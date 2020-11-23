@@ -15,16 +15,16 @@
         
         <input 
             type="hidden" 
-            name="recipeIndex" 
-            value="{{recipeIndex}}"
+            name="id" 
+            value="{{recipe.id}}"
         >
     </form>
 
     <form id="form-delete" action="/admin/recipes?_method=DELETE" method="post">
         <input 
             type="hidden" 
-            name="recipeIndex" 
-            value="{{recipeIndex}}"
+            name="id" 
+            value="{{recipe.id}}"
         >
         <button class="buttons" type="submit">Deletar</button>
     </form>

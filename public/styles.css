@@ -541,6 +541,11 @@ input, textarea {
 
 }
 
+.select-chef {
+    width: 100%;
+    outline: none;
+}
+
  /* === DETALHES RECEITA === */
 
  .detail-container > h3 {

@@ -9,18 +9,6 @@ for ( item of menuItems) {
     }
 }
 
-
-
-// Visualizar receitas 
-
-const buttonsRecipes = document.querySelectorAll('.button-visualizar')
-
-for (let recipeIndex = 0; buttonsRecipes.length; recipeIndex++) {
-    buttonsRecipes[recipeIndex].addEventListener("click", function() {
-        window.location.href = `recipes/${recipeIndex}`
-    })
-}
-
 // Adicionar e remover ingredientes
 function addIngredient() {
     const ingredients = document.querySelector("#ingredients")

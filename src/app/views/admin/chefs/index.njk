@@ -14,11 +14,11 @@
             {% for chef in chefs %}
             <div class="chef-container-admin" id="">
                 <div class="chef-img-admin">
-                    <img src="{{chef.image}}" alt="">
+                    <img src="{{chef.avatar_url}}" alt="">
                 </div>
                 <div class="chef-info" id="">
                     <h3 class="chef-name">{{chef.name}}</h3>
-                    <button type="button" class="button-visualizar-chefs">Visualizar</button>
+                    <a class="button-visualizar-chefs" href="/admin/chefs/{{chef.id}}">Visualizar</a>
                 </div>
             </div>    
             {% endfor %}

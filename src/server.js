@@ -1,4 +1,4 @@
-// === Server / Template Engine / Routes ===
+// === Server / Template Engine / Routes === 
 
 const express = require('express')
 const nunjucks = require('nunjucks')
@@ -15,7 +15,8 @@ server.use(methodOverride('_method'))
 server.use(routes)
 
 server.set("view engine", "njk")
-nunjucks.configure("views", {
+
+nunjucks.configure("src/app/views", {
     express: server,
     autoescape: false,
     noCache: true

@@ -1,4 +1,4 @@
-const recipesData = require('../data.json')
+const recipesData = require('../../../data.json')
 
 
 exports.index = function(req, res) {
@@ -34,7 +34,6 @@ exports.chefs = function(req, res) {
     
     return res.render("site/chefs")
 }
-
 
 exports.recipe = function (req, res) {
 

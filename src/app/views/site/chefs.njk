@@ -17,11 +17,11 @@
             {% for chef in chefs %}
                 <div class="chef-container" id="">
                     <div class="chef-img">
-                        <img src="{{chef.image}}" alt="">
+                        <img src="{{chef.avatar_url}}" alt="">
                     </div>
                     <div class="chef-info" id="">
                         <h3 class="chef-name">{{chef.name}}</h3>
-                        <p class="total-recipes">{{chef.recipes_total}}</p>
+                        <p class="total_recipes">{{chef.total_recipes}}</p>
                     </div>
             </div>    
             {% endfor %}

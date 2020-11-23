@@ -10,7 +10,7 @@
 <div class="detail-container">
 
     <h3> Receita: {{recipe.title}} </h3>
-    <a href="/admin/recipes/{{recipeIndex}}/edit" class="buttons" id="button-edit">Editar receita</a>
+    <a href="/admin/recipes/{{recipe.id}}/edit" class="buttons" id="button-edit">Editar receita</a>
 
     <div class="banner-detail">
         <div class="banner-image">
@@ -19,7 +19,7 @@
 
         <div class="banner-info">
             <h1>{{recipe.title}}</h1>
-            <h2>{{recipe.author}}</h2>
+            <h2>por {{recipe.chef_name}}</h2>
         </div>
     </div>
 

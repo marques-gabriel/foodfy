@@ -11,20 +11,21 @@
 
         <h3> Editando chef </h3>
         <button class="buttons" id="save-edit" type="submit">Salvar chef</button>
+        
         {% include 'admin/chefs/fields.njk' %}
         
         <input 
             type="hidden" 
-            name="chefIndex" 
-            value="{{chefIndex}}"
+            name="id" 
+            value="{{chef.id}}"
         >
     </form>
 
     <form id="form-delete" action="/admin/chefs?_method=DELETE" method="post">
         <input 
             type="hidden" 
-            name="chefIndex" 
-            value="{{chefIndex}}"
+            name="id" 
+            value="{{chef.id}}"
         >
         <button class="buttons" type="submit">Deletar</button>
     </form>

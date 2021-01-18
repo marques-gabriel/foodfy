@@ -644,6 +644,35 @@ form .recipe_file #photos-preview  img {
     opacity: 1;
 }
 
+/* PHOTOS APRESENTATION GALLERY */
+
+.detail-container .gallery-preview {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+
+    position: absolute;
+    right: 0;
+
+}
+
+.detail-container .gallery-preview img {
+    height: 50px;
+    width: 50px;
+
+    object-fit: cover;
+
+    opacity: 0.6;
+    cursor: pointer;
+    transition: 200ms;
+
+}
+
+.banner-detail .gallery-preview img:hover,
+.banner-detail .gallery-preview img.active {
+    opacity: 1;
+}
+
 
  /* === DETALHES RECEITA === */
 

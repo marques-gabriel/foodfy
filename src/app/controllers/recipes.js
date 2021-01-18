@@ -77,7 +77,7 @@ module.exports = {
     },
 
     async show(req, res) {
-        
+    
         let results = await Recipe.find(req.params.id)
 
         const recipe = results.rows[0]
@@ -89,8 +89,14 @@ module.exports = {
             information: "Informações Adiconais"
     
         }
+
+        results = await Recipe.files(recipe.id)
+        const files = results.rows.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+        }))
         
-        return res.render("admin/recipes/show", { titles, recipe })
+        return res.render("admin/recipes/show", { titles, recipe, files })
 
     },
 

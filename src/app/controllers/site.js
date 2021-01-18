@@ -25,7 +25,7 @@ module.exports = {
                         const home = {
                             title: "As melhores receitas",
                             text: "Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.",
-                            img: "/chef.png",
+                            img: "images/chef.png",
                             subTitle: "Mais Acessadas"
                     
                         }

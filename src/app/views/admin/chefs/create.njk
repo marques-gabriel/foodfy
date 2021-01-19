@@ -1,4 +1,4 @@
-{% extends "admin/layout.njk" %}
+{% extends "admin/chefs/layout.njk" %}
 
 {% block title %}
     <title> Criando chef </title>
@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <form  class="card" action="/admin/chefs" method="POST">
+    <form  class="card" action="/admin/chefs" method="POST" enctype="multipart/form-data">
         <h3> Criando chef </h3>
         <button class="buttons" type="submit">Salvar chef</button>
         {% include 'admin/chefs/fields.njk' %}

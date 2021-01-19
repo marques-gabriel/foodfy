@@ -7,10 +7,30 @@
 </div>
 
 <div class="item_title">Avatar</div>
-<div class="item">
-    <div>
-        <input type="url" name="avatar_url"
-        value = "{{chef.avatar_url}}"
-        >
-    </div>
+<div class="avatar-file">
+  <div id="avatar">
+      <input
+        id="avatar-input" 
+        type="file"
+        name="avatar"
+        accept="image/*"
+        onchange="PhotosUpload.handleFileInput(event)"
+      >
+      <p>Enviar Avatar</p>
+  </div>
+
+  <div id="avatar-preview">
+      {% if files %}
+        <div class="photo" id={{image.id}}>
+          <img src="{{image.src}}" alt="{{image.name}}">
+          <i class="material-icons"
+                onclick="PhotosUpload.removeOldPhoto(event)"
+            >delete</i>
+        </div>
+      {% endif %}
+  </div>
 </div>
+
+
+
+

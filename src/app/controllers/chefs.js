@@ -1,4 +1,5 @@
 const Chef = require ('../models/Chef')
+const File = require('../models/File')
 
 module.exports = {
     index(req, res) {
@@ -12,7 +13,7 @@ module.exports = {
 
     },
 
-    post(req, res) {
+    async post(req, res) {
 
         //validacao
         const keys = Object.keys(req.body)
@@ -21,55 +22,100 @@ module.exports = {
                 return res.send("Por favor, preencha todos os campos!")
         }
 
-        Chef.create(req.body, function(chef){
-            return res.redirect(`/admin/chefs/${chef.id}`)
-        })
+        if (req.files.length == 0)
+            return res.send("Please, send at least one image")
+
+        const file = await File.create(req.files[0])
+        
+        const chefData = {
+            ...req.body,
+            file_id: file.rows[0].id
+        }
+
+        let results = await Chef.create(chefData)
+        const chefId = results.rows[0].id
+        
+        return res.redirect(`/admin/chefs/${chefId}`)
 
 
     },
 
-    show(req, res) {
-        Chef.find(req.params.id, function(chef) {
+    async show(req, res) {
 
-            if (!chef) return res.send("Chef not found")
+        let results = await Chef.find(req.params.id)
 
-            Chef.findRecipes(req.params.id, function(recipes) {
-                
-                return res.render("admin/chefs/show", { chef, recipes})
-            })
+        const chef = results.rows[0]
+        if (!chef) return res.send("Chef not found")
+
+        results = await Chef.findRecipes(req.params.id)
+        const recipes = results.rows
             
+        return res.render("admin/chefs/show", { chef, recipes})
             
-        })
 
     },
 
-    edit(req, res) {
-        Chef.find(req.params.id, function(chef) {
-            if (!chef) return res.send("Chef not found")
+    async edit(req, res) {
 
-            return res.render("admin/chefs/edit", { chef })
-        })
+        let results = await Chef.find(req.params.id)
+
+        const chef = results.rows[0]
+        if (!chef) return res.send("Chef not found")
+
+        results = await Chef.files(chef.file_id)
+        let files = results.rows
+        files = files.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+        }))
+        
+        return res.render("admin/chefs/edit", { chef, files })
     },
 
-    put(req, res) {
+    async put(req, res) {
 
         //validacao
         const keys = Object.keys(req.body)
         for(key of keys) {
-            if (req.body[key] == "")
+            if (req.body[key] == "" && key != "removed_files")
                 return res.send("Por favor, preencha todos os campos!")
         }
+        
+        const file = await File.create(req.files[0])
 
-        Chef.update(req.body, function() {
-            return res.redirect(`/admin/chefs/${req.body.id}`)
-        })
+        const chefData = {
+            ...req.body,
+            file_id: file.rows[0].id
+        }
+
+        await Chef.update(chefData)
+
+        if (req.body.removed_files) {
+            const removedFiles = req.body.removed_files.split(",")
+            const lastIndex = removedFiles.length - 1
+            removedFiles.splice(lastIndex, 1)
+
+            const removedFilesPromise = removedFiles.map(id => File.delete(id))
+
+            await Promise.all(removedFilesPromise)
+        }
+        
+        return res.redirect(`/admin/chefs/${req.body.id}`)
     },
 
-    delete(req, res) {
-        Chef.delete(req.body.id, function() {
+    async delete(req, res) {
 
-            //Chefs que possuem receitas não podem ser deletados.
-            return res.redirect("/admin/chefs")
-        })
+        let results = await Chef.find(req.body.id)
+
+        const chef = results.rows[0]
+            if (!chef) return res.send("Chef not found")
+
+        results = await Chef.files(chef.file_id)
+        let files = results.rows
+
+        await Chef.delete(req.body.id, files)
+
+        //Chefs que possuem receitas não podem ser deletados.
+        return res.redirect("/admin/chefs")
     }
 }

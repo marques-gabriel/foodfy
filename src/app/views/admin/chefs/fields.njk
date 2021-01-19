@@ -21,12 +21,13 @@
 
   <div id="avatar-preview">
       {% if files %}
-        <div class="photo" id={{image.id}}>
-          <img src="{{image.src}}" alt="{{image.name}}">
+        <div class="photo" id={{files[0].id}}>
+          <img src="{{files[0].src}}" alt="{{files[0].name}}">
           <i class="material-icons"
                 onclick="PhotosUpload.removeOldPhoto(event)"
             >delete</i>
         </div>
+        <input type="hidden" name="removed_files">
       {% endif %}
   </div>
 </div>

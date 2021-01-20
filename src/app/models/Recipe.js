@@ -165,6 +165,7 @@ module.exports = {
 
             let query= "",
                 filterQuery = "",
+                order="",
                 totalQuery = `(
                     SELECT count(*) FROM recipes
                 ) AS total`
@@ -174,16 +175,27 @@ module.exports = {
                 filterQuery = `
                 WHERE recipes.title ILIKE '%${filter}%'
                 `
+                order = `
+                    ORDER BY updated_at DESC
+                `
                 totalQuery = `(
                     SELECT count(*) FROM recipes
                     ${filterQuery}
                 ) AS total`
+                
+            } else {
+
+                order = `
+                    ORDER BY created_at DESC
+                `
             }
+
 
             query = `SELECT recipes.*, ${totalQuery}, chefs.name AS chef_name
             FROM recipes
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
             ${filterQuery}
+            ${order}
             LIMIT $1 OFFSET $2
             `
             let results = await db.query(query, [limit, offset])

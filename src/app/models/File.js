@@ -3,19 +3,25 @@ const fs = require('fs')
 
 module.exports = {
     create(data) {
-        const query = `
+
+        try {
+            const query = `
                 INSERT INTO files (
                     name,
                     path
                 ) VALUES ($1, $2)
                 RETURNING id
             `
-        const values = [
-            data.filename,
-            data.path
-        ]
-    
-        return db.query(query, values)
+            const values = [
+                data.filename,
+                data.path
+            ]
+        
+            return db.query(query, values)
+
+        } catch(err) {
+            console.log(err)
+        }
     
     },
 

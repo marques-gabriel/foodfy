@@ -3,14 +3,13 @@ const { date } = require ('../../lib/utils.js')
 const fs = require('fs')
 
 module.exports = {
-    all(callback) {
-        db.query(`SELECT chefs.*, count(recipes) AS total_recipes
+    async all() {
+        let results = await db.query(`SELECT chefs.*, count(recipes) AS total_recipes
          FROM chefs
          LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
-         GROUP BY chefs.id`, function(err, results) {
-            if (err) throw `DATABASE ERRO ${err}`
-            callback(results.rows)
-        })
+         GROUP BY chefs.id`)
+         
+         return results.rows
     },
 
     create(data) {

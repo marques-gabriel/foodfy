@@ -4,7 +4,7 @@ const RecipeFiles = require('../models/Recipe_Files')
 
 
 module.exports = {
-    index(req, res) {
+    async index(req, res) {
 
         let { filter, page, limit } = req.query
             page = page || 1
@@ -15,23 +15,30 @@ module.exports = {
                 filter,
                 page,
                 limit,
-                offset,
-                callback(recipes) {
-                    if(recipes) {
-                        const pagination = {
-                            total: Math.ceil (recipes[0].total / limit),
-                            page
-                        }
-
-                        return res.render("admin/recipes/index",{ recipes, pagination,filter} )
-
-                    } else {
-                        return res.send("Não há receitas cadastradas")
-                    }
-                }
+                offset
             }
 
-            Recipe.paginate(params)
+            const recipes = await Recipe.paginate(params)
+
+            const pagination = {
+                total: Math.ceil (recipes[0].total / limit),
+                page
+            }
+            let files = []
+
+            for (recipe of recipes) {
+                let results = await Recipe.files(recipe.id)
+                files.push(results.rows[0])
+            }
+
+            files = files.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+            }))
+            
+            return res.render("admin/recipes/index",{ recipes, pagination,filter, files})
+                            
+
     },
 
     async create(req, res) {
@@ -158,7 +165,6 @@ module.exports = {
             await Promise.all(removedFilesPromise)
 
         }
-
 
         await Recipe.update(req.body)
         

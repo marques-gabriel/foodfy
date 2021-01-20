@@ -14,7 +14,7 @@
 
     <div class="banner-detail">
         <div class="banner-image-chef">
-            <img src="{{chef.avatar_url}}" alt="">
+            <img src="{{fileChef.src}}" alt="">
         </div>
 
         <div class="banner-info">
@@ -32,7 +32,7 @@
             {% for recipe in recipes %}    
             <div class="recipe-container-admin" id="">
                 <div class="recipe-img-admin">
-                    <img src="{{recipe.image}}" alt="">
+                    <img src="{{filesRecipes[loop.index0].src}}" alt="{{filesRecipes[loop.index0].name}}">
                 </div>
                 <div class="recipe-info" id="">
                     <h3 class="recipe-title">{{recipe.title}}</h3>

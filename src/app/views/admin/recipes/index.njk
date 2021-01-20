@@ -14,7 +14,7 @@
             {% for recipe in recipes %}    
             <div class="recipe-container-admin" id="">
                 <div class="recipe-img-admin">
-                    <img src="{{recipe.image}}" alt="">
+                    <img src="{{files[loop.index0].src}}" alt="{{files[loop.index0].name}}">
                 </div>
                 <div class="recipe-info" id="">
                     <h3 class="recipe-title">{{recipe.title}}</h3>

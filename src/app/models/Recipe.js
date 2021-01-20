@@ -71,6 +71,7 @@ module.exports = {
         `, [id])
     },
 
+
     update(data) {
         const query = `
             UPDATE recipes SET
@@ -128,8 +129,8 @@ module.exports = {
         return db.query(`SELECT name, id FROM chefs`)
     },
 
-    paginate(params) {
-        const { filter, limit, offset, callback} = params
+    async paginate(params) {
+        const { filter, limit, offset } = params
 
 
 
@@ -156,14 +157,19 @@ module.exports = {
         ${filterQuery}
         LIMIT $1 OFFSET $2
         `
-        db.query(query, [limit, offset], function(err, results) {
-            if (results.rows[0]) {
-                if (err) throw `DATABASE ERRO ${err}`
-                callback(results.rows)
-            } else {
-                if (err) throw `DATABASE ERRO ${err}`
-                callback()
-            }
-        })
+        let results = await db.query(query, [limit, offset])
+        
+        return results.rows
+            
+            
+        //     , function(err, results) {
+        //     if (results.rows[0]) {
+        //         if (err) throw `DATABASE ERRO ${err}`
+        //         callback(results.rows)
+        //     } else {
+        //         if (err) throw `DATABASE ERRO ${err}`
+        //         callback()
+        //     }
+        // })
     }
 }

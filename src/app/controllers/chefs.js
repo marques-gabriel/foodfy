@@ -1,11 +1,25 @@
 const Chef = require ('../models/Chef')
 const File = require('../models/File')
+const Recipe = require ('../models/Recipe')
 
 module.exports = {
-    index(req, res) {
-        Chef.all(function(chefs) {
-            return res.render("admin/chefs/index", {chefs})
-        })
+    async index(req, res) {
+
+        const chefs = await Chef.all()
+
+        let files = []
+
+        for (chef of chefs) {
+            let results = await Chef.files(chef.file_id)
+            files.push(results.rows[0])
+        }
+
+        files = files.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+        }))
+
+        return res.render("admin/chefs/index", {chefs, files})
     },
 
     create(req, res) {
@@ -47,10 +61,30 @@ module.exports = {
         const chef = results.rows[0]
         if (!chef) return res.send("Chef not found")
 
+        results = await Chef.files(chef.file_id)
+        let fileChef = results.rows[0]
+
+        fileChef = {
+            ...fileChef,
+            src: `${req.protocol}://${req.headers.host}${fileChef.path.replace("public", "")}`
+        }
+
         results = await Chef.findRecipes(req.params.id)
         const recipes = results.rows
+
+        let filesRecipes = []
+
+        for (recipe of results.rows) {
+            let resultsFiles = await Recipe.files(recipe.id)
+            filesRecipes.push(resultsFiles.rows[0])
+        }
+
+        filesRecipes = filesRecipes.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+        }))
             
-        return res.render("admin/chefs/show", { chef, recipes})
+        return res.render("admin/chefs/show", { chef, recipes, filesRecipes, fileChef})
             
 
     },

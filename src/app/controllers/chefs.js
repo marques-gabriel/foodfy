@@ -121,14 +121,31 @@ module.exports = {
                 return res.send("Por favor, preencha todos os campos!")
         }
         
-        const file = await File.create(req.files[0])
+        if (req.files.length != 0) {
 
-        const chefData = {
-            ...req.body,
-            file_id: file.rows[0].id
+            const file = await File.create(req.files[0])
+
+            const chefData = {
+                ...req.body,
+                file_id: file.rows[0].id
+            }
+    
+            await Chef.update(chefData)
+           
+        } else {
+            let results = await Chef.find(req.body.id)
+            const chef = results.rows[0]
+
+            results = await Chef.files(chef.file_id)
+            let fileId = results.rows[0].id
+
+            const chefData = {
+                ...req.body,
+                file_id: fileId
+            }
+
+            await Chef.update(chefData)
         }
-
-        await Chef.update(chefData)
 
         if (req.body.removed_files) {
             const removedFiles = req.body.removed_files.split(",")

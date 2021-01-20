@@ -3,9 +3,9 @@ const Chef = require ('../models/Chef')
 
 module.exports = {
 
-    index(req, res) {
+    async index(req, res) {
 
-        let { filter, page, limit } = req.query
+            let { filter, page, limit } = req.query
             page = page || 1
             limit = limit || 6
             let offset = limit * (page - 1)
@@ -14,37 +14,41 @@ module.exports = {
                 filter,
                 page,
                 limit,
-                offset,
-                callback(recipes) {
-                    if(recipes) {
-                        const pagination = {
-                            total: Math.ceil (recipes[0].total / limit),
-                            page
-                        }
-
-                        const home = {
-                            title: "As melhores receitas",
-                            text: "Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.",
-                            img: "images/chef.png",
-                            subTitle: "Mais Acessadas"
-                    
-                        }
-
-                        return res.render("site/home",{home, items: recipes, pagination,filter} )
-
-                    } else {
-                        return res.send("Não há receitas cadastradas")
-                    }
-                }
+                offset
             }
 
-            Recipe.paginate(params)
+            const recipes = await Recipe.paginate(params)
+
+            const pagination = {
+                total: Math.ceil (recipes[0].total / limit),
+                page
+            }
+            let files = []
+
+            for (recipe of recipes) {
+                let results = await Recipe.files(recipe.id)
+                files.push(results.rows[0])
+            }
+
+            files = files.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+            }))
+
+            const home = {
+                title: "As melhores receitas",
+                text: "Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.",
+                img: "images/chef.png",
+                subTitle: "Mais Acessadas"
+            }
+            
+            return res.render("site/home",{home, items: recipes, pagination,filter, files} )
 
     },
 
-    recipes(req, res) {
+    async recipes(req, res) {
 
-        let { filter, page, limit } = req.query
+            let { filter, page, limit } = req.query
             page = page || 1
             limit = limit || 6
             let offset = limit * (page - 1)
@@ -53,23 +57,29 @@ module.exports = {
                 filter,
                 page,
                 limit,
-                offset,
-                callback(recipes) {
-                    if(recipes) {
-                        const pagination = {
-                            total: Math.ceil (recipes[0].total / limit),
-                            page
-                        }
-
-                        return res.render("site/recipes",{ items: recipes, pagination,filter} )
-
-                    } else {
-                        return res.send("Não há receitas cadastradas")
-                    }
-                }
+                offset
             }
 
-            Recipe.paginate(params)
+            const recipes = await Recipe.paginate(params)
+
+            const pagination = {
+                total: Math.ceil (recipes[0].total / limit),
+                page
+            }
+            let files = []
+
+            for (recipe of recipes) {
+                let results = await Recipe.files(recipe.id)
+                files.push(results.rows[0])
+            }
+
+            files = files.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+            }))
+            
+            return res.render("site/recipes",{ items: recipes, pagination,filter, files} )
+
 
     },
 
@@ -85,28 +95,50 @@ module.exports = {
         return res.render("site/about", {about})
     },
 
-    recipe(req, res) {
-        Recipe.find(req.params.id, function(recipe) {
-            if (!recipe) return res.send("Recipe not found")
-            
-            const titles = {
-                ingredients: "Ingredientes",
-                preparation: "Modo de Preparo",
-                information: "Informações Adiconais"
+    async recipe(req, res) {
+
+        let results = await Recipe.find(req.params.id)
+        const recipe = results.rows[0]
+
+        if (!recipe) return res.send("Recipe not found")
+   
+        const titles = {
+            ingredients: "Ingredientes",
+            preparation: "Modo de Preparo",
+            information: "Informações Adiconais"
+    
+        }
+
+        results = await Recipe.files(recipe.id)
+        const files = results.rows.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+        }))
         
-            }
             
-            return res.render("site/recipe", { titles, recipe })
-        })
+        return res.render("site/recipe", { titles, recipe, files })
     },
 
-    chefs(req, res) {
-        Chef.all(function(chefs) {
-            return res.render("site/chefs", {chefs})
-        })
+    async chefs(req, res) {
+        
+        const chefs = await Chef.all()
+
+        let files = []
+
+        for (chef of chefs) {
+            let results = await Chef.files(chef.file_id)
+            files.push(results.rows[0])
+        }
+
+        files = files.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+        }))
+
+        return res.render("site/chefs", {chefs, files})
     },
 
-    search(req, res) {
+    async search(req, res) {
 
 
         let { filter, page, limit } = req.query
@@ -115,26 +147,36 @@ module.exports = {
         limit = limit || 6
         let offset = limit * (page - 1)
 
+
         const params = {
             filter,
             page,
             limit,
-            offset,
-            callback(recipes) {
-                if(recipes) {
-                    const pagination = {
-                        total: Math.ceil (recipes[0].total / limit),
-                        page
-                    }
-                    return res.render("site/search",{items: recipes, pagination,filter} )
-                } else {
-                    return res.render("site/search",{ filter } )
-                }
-            }
+            offset
         }
 
-        Recipe.paginate(params)
+        const recipes = await Recipe.paginate(params)
 
+        if(recipes == 0) 
+            return res.render("site/search",{ filter } )
+
+        let files = []
+
+            for (recipe of recipes) {
+                let results = await Recipe.files(recipe.id)
+                files.push(results.rows[0])
+            }
+
+            files = files.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+            }))
+
+            const pagination = {
+                total: Math.ceil (recipes[0].total / limit),
+                page
+            }
+            return res.render("site/search",{items: recipes, pagination,filter, files} )
 
     }
 }

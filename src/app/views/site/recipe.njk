@@ -10,8 +10,21 @@
 
     <div class="banner-detail">
         <div class="banner-image">
-            <img src="{{recipe.image}}" alt="">
+            <img src="{{files[0].src}}" alt="{{files[0].src}}.name">
         </div>
+
+        <div class="gallery-preview">
+           {% for image in files %}
+                <img 
+                    src="{{image.src}}" 
+                    alt="{{image.name}}"
+                    {% if loop.index0 == 0 %}
+                    class="active"
+                    {% endif %}
+                    onclick="ImageGallery.setImage(event)"
+                >
+           {% endfor %}
+       </div>
 
         <div class="banner-info">
             <h1>{{recipe.title}}</h1>
@@ -58,5 +71,21 @@
     </div>
 
 </div>
+
+<script>
+    const ImageGallery = {
+
+    highlight: document.querySelector('.banner-detail .banner-image > img'),
+    previews: document.querySelectorAll('.gallery-preview img'),
+    setImage(e) {
+        const { target } = e
+
+        ImageGallery.previews.forEach(preview => preview.classList.remove('active'))
+        target.classList.add('active')
+
+        ImageGallery.highlight.src = target.src
+    }
+}
+</script>
 
 {% endblock content %}

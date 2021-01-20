@@ -44,7 +44,7 @@
             
                 <div class="recipe-container" id="">
                     <div class="recipe-img">
-                        <a href="/recipe/{{item.id}}"><img src="{{item.image}}" alt=""></a>
+                        <a href="/recipe/{{item.id}}"><img src="{{files[loop.index0].src}}" alt="{{files[loop.index0].name}}"></a>
                     </div>
                     <div class="recipe-info">
                         <h3 class="recipe-title">{{item.title}}</h3>

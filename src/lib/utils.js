@@ -12,14 +12,19 @@ module.exports = {
         // dd
         const day = `0${date.getUTCDate()}`.slice(-2)
 
+        const hour = date.getHours()
+        const minutes = date.getMinutes()
+
         // return
         return {
 
             day,
             month,
             year,
+            hour,
+            minutes,
             iso: `${year}-${month}-${day}`,
-            format: `${day}/${month}/${year}`
+            format: `${day}/${month}/${year} `
 
         }
 

@@ -22,9 +22,8 @@ module.exports = {
                 title,
                 ingredients,
                 preparation,
-                information,
-                created_at
-            ) VALUES ($1, $2, $3, $4, $5, $6)
+                information
+            ) VALUES ($1, $2, $3, $4, $5)
             RETURNING id
         `
 
@@ -33,8 +32,7 @@ module.exports = {
                 data.title,
                 data.ingredients,
                 data.preparation,
-                data.information,
-                date(Date.now()).iso
+                data.information
             ]
 
             return db.query(query, values)

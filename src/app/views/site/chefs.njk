@@ -17,7 +17,7 @@
             {% for chef in chefs %}
                 <div class="chef-container" id="">
                     <div class="chef-img">
-                        <img src="{{files[loop.index0].src}}" alt="{{files[loop.index0].name}}">
+                        <img src="{{chef.img}}" alt="{{chef.name}}">
                     </div>
                     <div class="chef-info" id="">
                         <h3 class="chef-name">{{chef.name}}</h3>

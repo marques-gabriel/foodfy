@@ -17,32 +17,39 @@ module.exports = {
                 offset
             }
 
-            const recipes = await Recipe.paginate(params)
-
-            const pagination = {
-                total: Math.ceil (recipes[0].total / limit),
-                page
-            }
-            let files = []
-
-            for (recipe of recipes) {
-                let results = await Recipe.files(recipe.id)
-                files.push(results.rows[0])
-            }
-
-            files = files.map(file => ({
-                ...file,
-                src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
-            }))
-
             const home = {
                 title: "As melhores receitas",
                 text: "Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.",
                 img: "images/chef.png",
                 subTitle: "Mais Acessadas"
             }
+
+            let recipes = await Recipe.paginate(params)
+
+            if (recipes == 0) return res.render("site/home",{ home, filter })
+
+
+            const pagination = {
+                total: Math.ceil (recipes[0].total / limit),
+                page
+            }
+
+            async function getImage(recipeId) {
+                let results = await Recipe.files(recipeId)
+                const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+    
+                return files[0]
+            }
+
+            const recipesPromise = recipes.map(async recipe => {
+                recipe.img = await getImage(recipe.id)
+                return recipe
+            })
+
+            recipes = await Promise.all(recipesPromise)
+
             
-            return res.render("site/home",{home, items: recipes, pagination,filter, files} )
+            return res.render("site/home",{home, items: recipes, pagination,filter} )
 
     },
 
@@ -60,25 +67,31 @@ module.exports = {
                 offset
             }
 
-            const recipes = await Recipe.paginate(params)
+            let recipes = await Recipe.paginate(params)
+
+            if (recipes == 0) return res.render("site/recipes",{ filter })
+
 
             const pagination = {
                 total: Math.ceil (recipes[0].total / limit),
                 page
             }
-            let files = []
-
-            for (recipe of recipes) {
-                let results = await Recipe.files(recipe.id)
-                files.push(results.rows[0])
+            
+            async function getImage(recipeId) {
+                let results = await Recipe.files(recipeId)
+                const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+    
+                return files[0]
             }
 
-            files = files.map(file => ({
-                ...file,
-                src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
-            }))
+            const recipesPromise = recipes.map(async recipe => {
+                recipe.img = await getImage(recipe.id)
+                return recipe
+            })
+
+            recipes = await Promise.all(recipesPromise)
             
-            return res.render("site/recipes",{ items: recipes, pagination,filter, files} )
+            return res.render("site/recipes",{ items: recipes, pagination,filter} )
 
 
     },
@@ -121,21 +134,24 @@ module.exports = {
 
     async chefs(req, res) {
         
-        const chefs = await Chef.all()
+        let chefs = await Chef.all()
 
-        let files = []
 
-        for (chef of chefs) {
-            let results = await Chef.files(chef.file_id)
-            files.push(results.rows[0])
+        async function getImage(fileId) {
+            let results = await Chef.files(fileId)
+            const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+
+            return files[0]
         }
 
-        files = files.map(file => ({
-            ...file,
-            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
-        }))
+        const chefsPromise = chefs.map(async chef => {
+            chef.img = await getImage(chef.file_id)
+            return chef
+        })
 
-        return res.render("site/chefs", {chefs, files})
+        chefs = await Promise.all(chefsPromise)
+
+        return res.render("site/chefs", {chefs})
     },
 
     async search(req, res) {
@@ -155,28 +171,30 @@ module.exports = {
             offset
         }
 
-        const recipes = await Recipe.paginate(params)
+        let recipes = await Recipe.paginate(params)
 
         if(recipes == 0) 
             return res.render("site/search",{ filter } )
 
-        let files = []
-
-            for (recipe of recipes) {
-                let results = await Recipe.files(recipe.id)
-                files.push(results.rows[0])
+            async function getImage(recipeId) {
+                let results = await Recipe.files(recipeId)
+                const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+    
+                return files[0]
             }
 
-            files = files.map(file => ({
-                ...file,
-                src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
-            }))
+            const recipesPromise = recipes.map(async recipe => {
+                recipe.img = await getImage(recipe.id)
+                return recipe
+            })
+
+            recipes = await Promise.all(recipesPromise)
 
             const pagination = {
                 total: Math.ceil (recipes[0].total / limit),
                 page
             }
-            return res.render("site/search",{items: recipes, pagination,filter, files} )
+            return res.render("site/search",{items: recipes, pagination,filter} )
 
     }
 }

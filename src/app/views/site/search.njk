@@ -1,4 +1,6 @@
 {% extends "site/layout.njk" %}
+{% import "./parts/section-recipes.njk" as section %}
+
 
 {% block title %}
     <title> Busca </title>
@@ -28,30 +30,8 @@
 
 {% block content %}
 
+    {{section.recipes('Buscando por', 'filter-title' , 'menu-recipes', filter, items)}} 
 
-    <section class="menu" id="menu-recipes">
-
-        <h3 class="filter-title">Buscando por "{{filter}}"</h3>
-
-        <div class="menu-container">
-        {% for item in items %}
-        
-            <div class="recipe-container" id="">
-                <div class="recipe-img">
-                    <a href="/recipe/{{item.id}}"><img src="{{item.img}}" alt="{{item.title}}"></a>
-                </div>
-                <div class="recipe-info" id="">
-                    <h3 class="recipe-title">{{item.title}}</h3>
-                    <p class="recipe-author">por {{item.chef_name}}</p>
-                </div>
-            </div>
-
-        {% endfor %} 
-        
-
-        </div>
-
-    </section>
 
     <div class="pagination"
         data-page={{pagination.page}}

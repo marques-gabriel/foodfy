@@ -187,7 +187,7 @@ footer p {
     margin-bottom: 70px;
  }
 
- .menu h2 {
+ .menu > h3 {
     font-size: 24px;
     color: #111111;
     margin-top: 50px;

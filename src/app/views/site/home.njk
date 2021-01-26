@@ -1,4 +1,6 @@
 {% extends "site/layout.njk" %}
+{% import "./parts/section-recipes.njk" as section %}
+
 
 {% block title %}
     <title> Home </title>
@@ -34,30 +36,7 @@
 
     </section>
 
-
-    <section class="menu">
-        <h2>{{home.subTitle}}</h2>
-
-        <div class="menu-container">
-
-            {% for item in items %}
-            
-                <div class="recipe-container" id="">
-                    <div class="recipe-img">
-                        <a href="/recipe/{{item.id}}"><img src="{{item.img}}" alt="{{item.title}}"></a>
-                    </div>
-                    <div class="recipe-info">
-                        <h3 class="recipe-title">{{item.title}}</h3>
-                        <p class="recipe-autor">por {{item.chef_name}}</p>
-                    </div>
-                </div>
-
-            {% endfor %}
-
-        </div>
-
-
-    </section>
+    {{section.recipes(home.subTitle, '' , '', '', items)}}    
 
     <div class="pagination"
         data-page={{pagination.page}}

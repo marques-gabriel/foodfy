@@ -1,0 +1,410 @@
+/* === "ZERANDO" === */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-decoration: none;
+
+    object-fit:cover;
+}
+
+/* Html e body */
+html, body {
+  min-height: 100vh;
+}
+
+ /* === HEADER === */
+
+header{
+    width: 940px;
+    display: flex;
+    margin: 28px auto;
+}
+
+.header-menu {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    gap: 100px;
+
+}
+
+.header-links {
+    padding: 5px;
+}
+
+.header-list a {
+    font-size: 16px;
+    color: #111111;
+    text-decoration: none;
+    margin: 0 20px;
+    position: relative;
+}
+
+.header-list li {
+    display: inline;
+    list-style: none;
+}
+
+.header-list li a::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: black;
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+}
+
+.header-list li a:hover::after {
+    width: 100%;
+    transition: width 200ms ease-in-out 30ms;
+}
+
+.header-menu img:hover {
+    filter: brightness(1000%)
+}
+
+#header-about {
+    font-weight: bold;
+    display: inline;
+}
+
+#header-recipes {
+    font-weight: bold;
+    display: inline;
+}
+
+#header-chefs {
+    font-weight: bold;
+    display: inline;
+}
+
+ /* FILTER */
+
+
+.header form {
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    align-items: center;
+    grid-gap: 8px;
+}
+
+.header form input {
+    border: 1px solid #DDDDDD;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    width: 246px;
+    height: 37px;
+    font-size: 14px;
+    border-radius: 4px;
+
+}
+
+.header form button {
+    background: #6558C3;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px 15px;
+    color: white;
+    outline: none;
+    font-size: 16px;
+}
+
+/* === BODY === */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* === FOOTER === */
+footer {
+    background: #EEEEEE;
+    height: 62px;
+    width: 100%;
+    margin-top: auto;
+}
+
+footer p {
+    font-size: 14px;
+    color: #999999;
+    text-align: center;
+    padding: 20px;
+    font-family: Roboto-Regular;
+}
+
+/* === BANNER === */
+
+.banner {
+    background: #FBDFDB;
+    border-radius: 30px;
+    width: 940px;
+    height: 366px;
+    margin: 28px auto;
+}
+
+.banner-content {
+    display: flex;
+    position: relative;
+}
+
+.banner h1{
+    position: absolute;
+    width: 305px;
+    height: 38px;
+    font-size: 32px;
+    color: #111111;
+    top: 117px;
+    bottom: 211px; 
+    left: 60px;
+}
+
+.banner img {
+    position: absolute;
+    top: 66px;
+    right: 100px;  
+}
+
+.banner p{
+    position: absolute;
+    width: 316px;
+    height: 81px;
+    opacity: 0.7;
+    font-size: 18px;
+    color: #000000;
+    line-height: 28px;
+    top: 165px;
+    bottom: 211px; 
+    left: 60px;
+}
+
+ /* ===== MENU ==== */
+
+ .menu {
+    width: 940px;
+    margin: 0 auto;
+    margin-bottom: 70px;
+ }
+
+ .menu h2 {
+    font-size: 24px;
+    color: #111111;
+    margin-top: 50px;
+    margin-bottom: 20px;
+ }
+
+ .menu-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    
+ }
+
+.recipe-img img {
+    border-radius: 15px;
+    width: 300px;
+    height: 140px;
+ }  
+
+ .recipe-img:hover {
+    filter: brightness(80%);
+    cursor: pointer;
+ }  
+
+ .recipe-info h3 {
+    font-size: 18px;
+    color: #111111;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-weight: 400;
+    min-width: 156px;
+    
+ }
+
+ .recipe-info p{
+    font-size: 14px;
+    color: #777777;
+}
+
+#menu-recipes {
+    margin-top: 50px;
+}
+
+/* SEARCH  */
+
+#menu-search > h3 {
+    padding-bottom: 20px;
+    padding-top: 32px;
+}
+
+.filter-title {
+    margin-bottom: 20px ;
+}
+
+
+/* ==== TEXTS ABOUT ==== */ 
+
+.texts {
+    width: 940px;
+    margin: 0 auto;
+}
+
+.text-container {
+    height: 280px;
+    line-height: 28px;
+}
+
+#title-about {
+    margin-top: 50px;
+}
+
+.texts h2 {
+    margin-bottom: 20px;
+}
+
+.texts p {
+    font-size: 18px;
+    color: #444444;
+}
+
+.text-container-final {
+    margin-bottom: 50px;
+    line-height: 28px;
+}
+
+/* ===== PAGE RECIPE ====== */
+.detail-container {
+    position: relative;
+    width: 940px;
+    margin: 0 auto;
+    font-family: Roboto-Regular;
+    font-size: 18px;
+    color: #444444;
+    line-height: 28px;
+
+}
+
+.banner-image img {
+    border-radius: 15px;
+    height: 230px;
+    width: 940px;
+}
+
+.banner-info h1 {
+    font-family: Roboto-Bold;
+    font-size: 36px;
+    color: #111111;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.banner-info h2 {
+    font-family: Roboto-Regular;
+    font-size: 20px;
+    color: #777777;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 4px;
+}
+
+.title {
+    margin-bottom: 20px;
+    margin-top: 50px;
+
+}
+
+.title h3 {
+    font-family: Roboto-Bold;
+    font-size: 24px;
+    color: #111111;
+    display: inline;
+
+}
+
+.title p {
+    font-family: Roboto-Bold;
+    font-size: 12px;
+    color: #999999;
+    display: inline;
+    margin-left: 8px;
+
+}
+
+.information {
+    margin-bottom: 38px;
+}
+
+/* BOTTOM ESCONDER e MOSTRAR */
+.ingredients-bottom, .preparation-bottom, .info-bottom{
+    cursor: pointer;
+}
+
+.ingredients-list.desactive {
+    display: none;
+}
+
+.preparation-list.desactive {
+    display: none;
+}
+
+.information.desactive {
+    display: none;
+}
+
+
+/* === LISTAR CHEFS === */
+
+
+.menu-container-chef {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-top: 25px;
+
+}
+
+.chef-img img {
+   border-radius: 50%;
+   width: 64px;
+   height: 64px;
+}
+
+.chef-info h3 {
+   font-family: Roboto-Regular;
+   font-size: 18px;
+   color: #111111;
+   font-weight: normal;
+   min-width: 156px;
+}
+
+.chef-info p{
+    font-size: 14px;
+    color: #777777;
+}
+
+.chef-container {
+   display: grid;
+   grid-template-columns: 0.1fr 1fr;
+   gap: 20px;
+   align-items: center;
+}
+
+  /* ====== PAGINACAO ====== */
+
+
+.pagination {
+    margin: 0 auto;
+    margin-bottom: 32px;
+}
+
+.pagination a, .pagination span {
+    color: black;
+    text-decoration: none;
+    margin-right: 16px;
+}
+
+.pagination a:hover {
+    color: grey;
+    border-bottom: 1px solid grey;
+}

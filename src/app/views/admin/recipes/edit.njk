@@ -1,4 +1,4 @@
-{% extends "admin/layout.njk" %}
+{% extends "admin/recipes/layout.njk" %}
 
 {% block title %}
     <title> Editando receita </title>
@@ -30,7 +30,7 @@
         <button class="buttons" type="submit">Deletar</button>
     </form>
 
-    {% include "../../delete-recipe.njk"%}
+    {% include "./delete-recipe.njk"%}
 
 </div>
 

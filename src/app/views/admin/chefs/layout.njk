@@ -2,9 +2,9 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        rel="stylesheet">
-        <link rel="stylesheet" href="/styles.css">
+
+        {% include "../../styles.njk"%}
+
 
         {% block title %}
         {% endblock title %}
@@ -29,7 +29,7 @@
         {% block content %}
         {% endblock content %}
     
-        <script src="/scripts-admin-chefs.js"></script>
+        <script src="/scripts/scripts-admin-chefs.js"></script>
 
     </body>
 

@@ -34,7 +34,7 @@ ALTER TABLE "chefs" ADD FOREIGN KEY ("file_id") REFERENCES "files" ("id");
 
 CREATE TABLE "recipe_files" (
 "id" SERIAL PRIMARY KEY,
-"recipe_id" integer REFERENCES recipes(id) ON DELETE CASCADE,
+"recipe_id" integer REFERENCES recipes(id),
 "file_id" integer REFERENCES files(id)
 );
 

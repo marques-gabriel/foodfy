@@ -4,7 +4,8 @@
     margin: 0 auto;
 }
 
-section.login.container {
+section.login.container,
+section.password.container {
     max-width: 500px;
 }
 
@@ -37,7 +38,8 @@ section.login.container .footer ul li a:hover {
     font-weight: bold;
 }
 
-section.login.container .footer ul li button {
+section.login.container .footer ul li button,
+section.password.container button {
     background: #6558C3;
     border-radius: 4px;
     color: white;
@@ -48,5 +50,11 @@ section.login.container .footer ul li button {
 
 }
 
+section.password.container form button {
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-left: auto;
+}
 
 

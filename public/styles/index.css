@@ -5,6 +5,8 @@
     border: 0;
     text-decoration: none;
 
+    list-style: none;
+
     object-fit:cover;
 }
 

@@ -1,0 +1,52 @@
+.container {
+    width: 90%;
+    max-width: 940px;
+    margin: 0 auto;
+}
+
+section.login.container {
+    max-width: 500px;
+}
+
+.header-session .logo {
+    text-align: center;
+    margin-bottom: 146px;
+}
+
+.header-session h3 {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+section.login.container .footer ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 250px;
+    align-items: center;
+
+    margin-top: 50px;
+    
+}
+
+section.login.container .footer ul li a {
+    color: #777;
+}
+
+section.login.container .footer ul li a:hover {
+    color: black;
+    font-weight: bold;
+}
+
+section.login.container .footer ul li button {
+    background: #6558C3;
+    border-radius: 4px;
+    color: white;
+
+    cursor: pointer;
+
+    padding: 9px 35px;
+
+}
+
+
+

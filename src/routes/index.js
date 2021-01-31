@@ -5,9 +5,15 @@ const site = require('./site')
 const recipes = require('./recipes')
 const chefs = require('./chefs')
 
+const users = require('./users')
+
+
 routes.use('/', site)
 routes.use('/admin/recipes', recipes)
 routes.use('/admin/chefs', chefs)
+
+routes.use('/admin/users', users)
+
 
 
 // Alias

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    
+    {% include "../styles.njk"%}
+    
+
+    {% block title %}
+    {% endblock title %}
+
+</head>
+
+<body>
+
+    <header>
+        {% block header %}
+        {% endblock header %}
+    </header>
+
+        {% block content %}
+        {% endblock content %}
+
+</body>
+
+
+</html>

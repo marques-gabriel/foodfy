@@ -2,6 +2,9 @@ const express = require('express')
 const routes = express.Router()
 
 const SessionController = require('../app/controllers/SessionController')
+const UserController = require('../app/controllers/UserController')
+const ProfileController = require('../app/controllers/ProfileController')
+
 
 
 // login/logout
@@ -11,6 +14,14 @@ routes.get('/login', SessionController.loginForm)
 routes.get('/forgot-password', SessionController.forgotForm)
 routes.get('/password-reset', SessionController.resetForm)
 
+
+// Rotas de perfil de um usuário logado
+routes.get('/profile', ProfileController.index) // Mostrar o formulário com dados do usuário logado
+
+// users 
+routes.get('/register', UserController.registerForm)
+routes.get('/:id/edit', UserController.edit)
+routes.get('/', UserController.list)
 
 
 module.exports = routes

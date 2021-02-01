@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+
+        {% include "../../styles.njk"%}
+
+        {% block title %}
+        {% endblock title %}
+
+    </head>
+
+    <body>
+        <header class="header-admin">
+            {% include "../parts/header.njk"%} 
+        </header>
+
+        {% block content %}
+        {% endblock content %}
+    
+        <script src="/scripts/scripts-admin.js"></script>
+
+    </body>
+
+</html>
+            

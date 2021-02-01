@@ -1,0 +1,30 @@
+{% extends "admin/users/layout.njk" %}
+
+{% block title %}
+    <title>Atualizar Usuário</title>
+{% endblock title %}
+
+{% block content %}
+
+<section class="user-register container form">
+    <form method="POST" action="/admin/users?_method=PUT">
+
+
+        <div class="header-user">
+            <h3>Atualizar Usuário</h3>
+            <form class="form-delete" action="/users?_method=DELETE" method="post">
+                <input type="hidden" name="id" value="{{user.id}}">
+                <button class="button delete" type="submit">Deletar</button>
+            </form>
+            <button class="button" type="submit">Salvar</button>
+        </div>
+
+        <div class="fields-users">
+            {% include 'admin/users/fields.njk' %}
+        </div>
+
+
+    </form>
+</section>
+
+{% endblock content %}

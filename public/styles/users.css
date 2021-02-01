@@ -1,0 +1,111 @@
+.user-register.container.form {
+    margin-top: 55px;
+}
+
+.fields-users {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.checkbox {
+    padding-top: 0;
+}
+
+.header-user {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 16px;
+}
+
+.header-user button,
+.header-user a {
+    text-align: right;
+    cursor: pointer;
+    padding: 9px 35px;
+}
+
+.header-user button {
+    background: #6558C3;
+    border-radius: 4px;
+    color: white;
+}
+
+.header-user a {
+    background: #8A8A8A;
+    border-radius: 4px;
+    color: white;
+}
+
+.header-user button.delete {
+    background: #DC4747;
+}
+
+.header-user h3 {
+    font-family: Helvetica-Bold;
+    font-size: 24px;
+}
+
+/* LISTAR USUARIOS */
+
+.user-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 200px;
+    grid-row-gap: 52px;
+
+    margin-top: 72px;
+
+}
+
+.container.users {
+    margin-top: 54px;
+}
+
+.user-info {
+    display: grid;
+    grid-template-rows: 1fr 1fr auto;
+    grid-row-gap: 5px;
+    min-width: 172px;
+
+}
+
+.user-name {
+    font-family: Helvetica;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.user-email {
+    font-family: Helvetica;
+    font-size: 14px;
+    color: #777777;
+}
+
+.button.user-add {
+    background: #7159C1;
+    padding: 9px 52px;
+}
+
+.button-editar{
+    font-family: Helvetica-Bold;
+    font-size: 14px;
+    color: #6558C3;
+    cursor: pointer;
+}
+
+.button-remove{
+    font-family: Helvetica-Bold;
+    font-size: 14px;
+    color: #F55A5A;
+    background: none;
+    cursor: pointer;
+}
+
+.user-buttons {
+    display: grid;
+    grid-template-columns: .0fr .7fr;
+    /* gap: 16px; */
+}
+
+

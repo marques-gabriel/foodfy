@@ -1,0 +1,67 @@
+{% extends "admin/users/layout.njk" %}
+
+{% block title %}
+    <title>Perfil</title>
+{% endblock title %}
+
+{% block content %}
+
+<section class="user-register container form">
+    <form method="POST" action="/admin/users?_method=PUT">
+
+
+        <div class="header-user">
+            <h3>Bem vindo {{user.name}}</h3>
+            <button class="button" type="submit">Salvar</button>
+        </div>
+
+        <div class="fields-users">
+
+            <div>
+                <div class="item_title">Nome</div>
+                <div class="item">
+                    <div class="input">
+                        <input
+                            type="text"
+                            name="name"
+                            value = "{{ user.name }}"
+                            required
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="item_title">Email</div>
+                <div class="item">
+                    <div class="input">
+                        <input
+                            type="email"
+                            name="email"
+                            value = "{{ user.email }}"
+                            onblur="Validate.apply(this, 'isEmail')"
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="item_title">Senha</div>
+                    <div class="item">
+                        <div>
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Digite a senha"
+                            >
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+
+
+    </form>
+</section>
+
+{% endblock content %}

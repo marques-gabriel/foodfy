@@ -1,0 +1,38 @@
+{% extends "admin/users/layout.njk" %}
+
+{% block title %}
+    <title> Usuários </title>
+{% endblock title %}
+
+{% block content %}
+
+
+    <section class="container users">
+
+        <div class="header-user">
+            <h3>Usuários</h3>
+            <a class="button user-add" href="/admin/users/register">Novo</a>
+        </div>
+
+        <div class="user-list">
+
+            {% for user in users %}    
+
+            <div class="user-container" id="">
+                <div class="user-info" id="">
+                    <h3 class="user-name">{{user.name}}</h3>
+                    <p class="user-email">{{user.email}}</p>
+                    <div class="user-buttons">
+                        <a class="button-editar" href="/admin/users/{{user.id}}/edit">Editar</a>
+                        <button class="button-remove" type="submit">Remover</button>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+        
+{% endblock content %}

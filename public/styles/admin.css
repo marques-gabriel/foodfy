@@ -12,7 +12,7 @@
 }
 .header-admin-menu {
     display: grid;
-    grid-template-columns: 0.1fr 3fr;
+    grid-template-columns: .0fr auto;
     align-items: center;
     gap: 50px;
     width: 940px;
@@ -29,6 +29,11 @@
     font-family: Roboto-Bold;
     font-size: 15px;
     color: #999999;
+}
+
+.header-list-admin li:nth-child(4) {
+    position: absolute;
+    margin-left: 470px;
 }
 
 .logo-admin {
@@ -102,7 +107,7 @@
 }
 
 
-input, textarea {
+.item input, textarea {
     width: 100%;
     outline: none;
     font-family: Roboto-Regular;

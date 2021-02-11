@@ -1,3 +1,6 @@
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+
 DROP DATABASE IF EXISTS foodfy;
 CREATE DATABASE foodfy;
 
@@ -5,6 +8,7 @@ CREATE DATABASE foodfy;
 CREATE TABLE "recipes" (
 "id" SERIAL PRIMARY KEY,
 "chef_id" integer NOT NULL,
+"user_id" int,
 "title" text NOT NULL,
 "ingredients" text[] NOT NULL,
 "preparation" text[] NOT NULL,
@@ -13,21 +17,21 @@ CREATE TABLE "recipes" (
 "updated_at" timestamp DEFAULT (now())
 );
 
-CREATE TABLE "chefs" (
-"id" SERIAL PRIMARY KEY,
-"name" text NOT NULL,
-"file_id" integer NOT NULL REFERENCES "files" (id),
-"created_at" timestamp DEFAULT (now())
-);
-
-ALTER TABLE "recipes" ADD FOREIGN KEY ("chef_id") REFERENCES "chefs" ("id");
-
-
 CREATE TABLE "files" (
 "id" SERIAL PRIMARY KEY,
 "name" text NOT NULL,
 "path" text NOT NULL
 );
+
+CREATE TABLE "chefs" (
+"id" SERIAL PRIMARY KEY,
+"name" text NOT NULL,
+"file_id" integer NOT NULL REFERENCES "files" (id),
+"created_at" timestamp DEFAULT (now()),
+"updated_at" timestamp DEFAULT (now())
+);
+
+ALTER TABLE "recipes" ADD FOREIGN KEY ("chef_id") REFERENCES "chefs" ("id");
 
 ALTER TABLE "chefs" ADD FOREIGN KEY ("file_id") REFERENCES "files" ("id");
 
@@ -37,6 +41,22 @@ CREATE TABLE "recipe_files" (
 "recipe_id" integer REFERENCES recipes(id),
 "file_id" integer REFERENCES files(id)
 );
+
+
+CREATE TABLE "users" (
+  "id" SERIAL PRIMARY KEY,
+  "name" text NOT NULL,
+  "email" text UNIQUE NOT NULL,
+  "password" text NOT NULL,
+  "is_admin" BOOLEAN DEFAULT false,
+  "reset_token" TEXT,
+  "reset_token_expires" TEXT,
+  "created_at" timestamp DEFAULT (now()),
+  "updated_at" timestamp DEFAULT (now())
+);
+
+ALTER TABLE "recipes" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
+
 
 --
 
@@ -50,10 +70,20 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- auto updated_at recipes
+-- auto updated_at recipes, chefs and users
 
 CREATE TRIGGER set_timestamp
 BEFORE UPDATE ON recipes
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON chefs
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON users
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
 
@@ -72,3 +102,10 @@ ADD CONSTRAINT recipe_files_file_id_fkey
 FOREIGN KEY ("file_id")
 REFERENCES "files" ("id")
 ON DELETE CASCADE;
+
+-- restart sequence auto_increment from tables ids
+ALTER SEQUENCE chefs_id_seq RESTART WITH 1;
+ALTER SEQUENCE recipes_id_seq RESTART WITH 1;
+ALTER SEQUENCE files_id_seq RESTART WITH 1;
+ALTER SEQUENCE recipe_files_id_seq RESTART WITH 1;
+ALTER SEQUENCE users_id_seq RESTART WITH 1;

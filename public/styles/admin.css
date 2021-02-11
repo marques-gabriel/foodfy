@@ -1,4 +1,4 @@
-/* =========================== STYLES ADMIN ==================================*/ 
+/* =========================== STYLES ADMIN // CHEFS AND RECIPES ==================================*/ 
 
 
  /* === HEADER === */
@@ -104,6 +104,11 @@
     border: 1px solid #DDDDDD;
     border-radius: 4px;
     margin-top: 8px;
+    outline: none;
+}
+.ingredient input, .preparation input {
+    outline: none;
+    width: 100%;
 }
 
 
@@ -474,3 +479,14 @@ a#button-edit {
     width: 200px;
     border-radius: 50%;
  }
+
+ /* validade errors */
+
+.error {
+    background-color: #DC4747;
+    padding: 4px;
+    border-radius: 4px;
+    color: white;
+    max-width: 30%;
+    
+}

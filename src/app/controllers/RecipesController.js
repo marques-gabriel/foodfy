@@ -24,7 +24,7 @@ module.exports = {
 
             if (recipes == 0) return res.render("admin/recipes/index",{ 
                 filter,
-                error: 'Não encontramos receitas cadastradas no momento'
+                success: 'Não encontramos receitas cadastradas no momento'
              })
 
             const pagination = {

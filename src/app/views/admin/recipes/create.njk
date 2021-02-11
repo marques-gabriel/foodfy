@@ -8,7 +8,7 @@
 
     <form  class="card" action="/admin/recipes" method="POST" enctype="multipart/form-data">
         <h3> Criando receita </h3>
-        <button class="buttons" type="submit">Salvar Receita</button>
+        <button class="buttons" type="submit" onclick="Validate.allFields(event)">Salvar Receita</button>
         {% include 'admin/recipes/fields.njk' %}
 
     </form>

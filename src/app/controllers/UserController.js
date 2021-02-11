@@ -1,5 +1,3 @@
-const { response } = require("express")
-
 module.exports = {
 
     registerForm(req, res) {

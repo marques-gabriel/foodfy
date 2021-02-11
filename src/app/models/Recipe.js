@@ -1,59 +1,52 @@
-const db =  require('../../config/db')
-const { date } = require ('../../lib/utils.js') 
+const Base = require('./Base')
+const db = require('../../config/db')
 const fs = require('fs')
 
-module.exports = {
-    all(callback) {
-        db.query(`SELECT recipes.*, chefs.name AS chef_name
-         FROM recipes
-         LEFT JOIN chefs ON (recipes.chef_id = chefs.id)`, function(err, results) {
-            if (err) throw `DATABASE ERRO ${err}`
-            callback(results.rows)
-        })
-    },
+Base.init({ table: 'recipes' })
 
-    create(data) {
+module.exports = {
+
+    ...Base,
+
+    async all(callback) {
 
         try {
 
-            const query = `
-            INSERT INTO recipes (
-                chef_id,
-                title,
-                ingredients,
-                preparation,
-                information
-            ) VALUES ($1, $2, $3, $4, $5)
-            RETURNING id
-        `
+           let results = await db.query(`
+                SELECT recipes.*, chefs.name AS chef_name
+                FROM recipes
+                LEFT JOIN chefs ON (recipes.chef_id = chefs.id)`
+            )
 
-            const values = [
-                data.chef,
-                data.title,
-                data.ingredients,
-                data.preparation,
-                data.information
-            ]
+            return results.rows
 
-            return db.query(query, values)
-
-        } catch(err) {
-            console.log(err)
-        }   
-
+        } catch (error) {
+            console.error(error)
+        }
+        
     },
 
     find(id) {
-        return db.query(`
+
+        try {
+
+            return db.query(`
             SELECT recipes.*, chefs.name AS chef_name
             FROM recipes
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
             WHERE recipes.id = $1`, [id])
+
+        } catch (error) {
+            console.error(error)
+        }
+        
     },
 
     findBy(filter, callback) {
 
-            db.query(`
+            try {
+
+                db.query(`
                 SELECT recipes.*, chefs.name AS chef_name
                 FROM recipes
                 LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
@@ -62,8 +55,12 @@ module.exports = {
 
                 if(err) throw `Database Error!!! ${err}`
             
-            callback(results.rows)
+                callback(results.rows)
         })
+            } catch (error) {
+                console.error(error)
+            }
+
     },
 
     files(id) {
@@ -81,40 +78,7 @@ module.exports = {
             console.log(err)
         }
     },
-
-
-    update(data) {
-
-        try {
-
-            const query = `
-            UPDATE recipes SET
-            chef_id=($1),
-            title=($2),
-            ingredients=($3),
-            preparation=($4),
-            information=($5)
-        WHERE id = $6
-        `
-
-            const values = [
-                data.chef,
-                data.title,
-                data.ingredients,
-                data.preparation,
-                data.information,
-                data.id
-            ]
-
-            return db.query(query, values)
-
-        } catch(err) {
-            console.log(err)
-        }
-
-
-    },
-
+    
     async delete(id) {
 
         try {

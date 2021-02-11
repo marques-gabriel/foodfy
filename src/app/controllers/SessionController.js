@@ -1,17 +1,17 @@
 module.exports = {
 
     loginForm(req, res) {
-        return res.render("session/login")
+        return res.render("admin/session/login")
     },
 
     forgotForm(req, res) {
 
-        return res.render("session/forgot-password")
+        return res.render("admin/session/forgot-password")
 
     },
 
     resetForm(req, res) {
-        return res.render("session/password-reset", { token: req.query.token })
+        return res.render("admin/session/password-reset", { token: req.query.token })
     }
 
 }

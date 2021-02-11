@@ -1,8 +1,14 @@
-const db =  require('../../config/db')
-const { date } = require ('../../lib/utils.js') 
+const Base = require('./Base')
+const db = require('../../config/db')
 const fs = require('fs')
 
+Base.init({ table: 'chefs' })
+
+
 module.exports = {
+    
+    ...Base,
+
     async all() {
 
         try {
@@ -21,39 +27,21 @@ module.exports = {
         }
     },
 
-    create(data) {
+    find(id) {
 
         try {
-            const query = `
-            INSERT INTO chefs (
-                name,
-                file_id
-            ) VALUES ($1, $2)
-            RETURNING id
-        `
 
-            const values = [
-                data.name,
-                data.file_id
-            ]
-
-            return db.query(query, values)
-
-        } catch(err) {
-            console.log(err)
-        }
-        
-
-
-    },
-
-    find(id) {
-        return db.query(`
+            return db.query(`
             SELECT chefs.*, count(recipes) AS total_recipes
             FROM chefs
             LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
             WHERE chefs.id = $1
             GROUP BY chefs.id`, [id])
+
+        } catch (error) {
+            console.error(error)
+        }
+        
     },
 
     files(id) {
@@ -73,36 +61,19 @@ module.exports = {
     },
 
     findRecipes(id) {
-           return db.query(`
+
+        try {
+
+            return db.query(`
                 SELECT recipes.*, chefs.name AS chef_name
                 FROM recipes
                 LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
                 WHERE recipes.chef_id = $1`, [id])
-    },
-
-    update(data) {
-
-        try {
-            const query = `
-            UPDATE chefs SET
-            name=($1),
-            file_id=($2)
-
-            WHERE id = $3
-            `
-
-            const values = [
-                data.name,
-                data.file_id,
-                data.id
-            ]
-
-            return db.query(query, values)
-
-        } catch(err) {
-            console.log(err)
+            
+        } catch (error) {
+            console.error(error)
         }
-        
+
     },
 
     async delete(id, files) {

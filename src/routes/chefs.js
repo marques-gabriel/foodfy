@@ -4,6 +4,9 @@ const multer = require('../app/middlewares/multer')
 
 const ChefsController = require('../app/controllers/ChefsController')
 
+const Validator = require('../app/validators/chefValidator')
+
+
 // CHEFS
 
 routes.get("/", ChefsController.index)
@@ -11,8 +14,8 @@ routes.get("/create", ChefsController.create)
 routes.get("/:id", ChefsController.show)
 routes.get("/:id/edit", ChefsController.edit)
 
-routes.post("/", multer.array("avatar", 1), ChefsController.post)
-routes.put("/", multer.array("avatar", 1), ChefsController.put)
+routes.post("/", multer.array("avatar", 1), Validator.post, ChefsController.post)
+routes.put("/", multer.array("avatar", 1), Validator.put, ChefsController.put)
 routes.delete("/", ChefsController.delete)
 
 module.exports = routes

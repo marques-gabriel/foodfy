@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     
-    {% include "../styles.njk"%}
+    {% include "../../styles.njk"%}
     
 
     {% block title %}
@@ -12,6 +12,9 @@
 </head>
 
 <body>
+
+    {% include "admin/parts/messages.njk"%}
+
 
     <header>
         {% block header %}

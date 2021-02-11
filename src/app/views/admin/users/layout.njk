@@ -11,6 +11,9 @@
     </head>
 
     <body>
+
+        {% include "admin/parts/messages.njk"%}
+
         <header class="header-admin">
             {% include "../parts/header.njk"%} 
         </header>
@@ -19,6 +22,7 @@
         {% endblock content %}
     
         <script src="/scripts/scripts-admin.js"></script>
+        <script src="/scripts/validate.js"></script>
 
     </body>
 

@@ -23,10 +23,10 @@ async function post(req, res, next) {
 
         let { email } = req.body
 
-        const user = await User.find(
+        const user = await User.findOne(
             {
                 where: { email }
-            
+    
             })
 
         if (user) return res.render('admin/users/register', {
@@ -37,6 +37,25 @@ async function post(req, res, next) {
         next()
 }
 
+async function edit(req, res, next) {
+
+
+    const id = req.params.id
+
+
+    const user = await User.findOne({ where: {id} })
+
+
+    if(!user) return res.render("admin/users/register", {
+        error: "Usuário não encontrado"
+    })
+
+    req.user = user
+
+    next()
+
+}
+
 async function put(req, res, next) {
 
 
@@ -44,6 +63,10 @@ async function put(req, res, next) {
     if(fillAllFields) {
         return res.render("admin/users/index", fillAllFields)
     }
+
+    const { id } = req.body
+
+    const user = await User.findOne({ where: {id} })
 
     req.user = user
 
@@ -53,5 +76,6 @@ async function put(req, res, next) {
 
 module.exports = {
     post,
+    edit,
     put
 }

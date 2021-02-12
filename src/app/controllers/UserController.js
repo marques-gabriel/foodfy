@@ -4,6 +4,7 @@ const Recipe = require('../models/Recipe')
 
 const crypto = require('crypto')
 const mailer = require('../../lib/mailer')
+const { Console } = require('console')
 
 
 module.exports = {
@@ -13,8 +14,14 @@ module.exports = {
         return res.render("admin/users/register")
     },
 
-    edit(req, res) {
-        return res.render("admin/users/edit")
+    async edit(req, res) {
+
+            const { user } = req
+
+
+            // const user = await User.findOne({where: { id: req.params.id }})
+
+        return res.render("admin/users/edit", { user })
     },
 
     list(req, res) {
@@ -25,7 +32,7 @@ module.exports = {
 
         try {
 
-            let { name, email, is_admin } = req.body
+            let { name, email } = req.body
 
             const password = crypto.randomBytes(9).toString("hex")
             const passwordHash = await hash(password, 8)
@@ -34,18 +41,20 @@ module.exports = {
                 name,
                 email,
                 password: passwordHash,
-                is_admin
+                is_admin: req.body.is_admin || false
             })
 
-            const user = await User.find(userId)
+            const user = await User.findOne({where: { id: userId }})
+
+            req.session.userId = userId
 
             const emailHtml = (user, password) => `
                 <h2>Olá ${user.name}</h2>
                 <p>Sua conta foi cadastrada com sucesso</p>
                 <p><br/><br/></p>
-                <h3>Dados do conta</h3>
-                <p>${user.name}</p>
-                <p>${user.email}</p>
+                <h3>Dados da conta</h3>
+                <p>Nome: ${user.name}</p>
+                <p>Email: ${user.email}</p>
                 <p><br/><br/></p>
                 <strong><p>Essa é a sua senha de acesso (NÃO PASSE PARA NINGUÉM)</p></strong>
                 <p><br/><br/></p>
@@ -59,8 +68,6 @@ module.exports = {
                 html: emailHtml(user, password)
             })
 
-            req.session.userId = userId
-
             return res.render("admin/session/login", {
                 user,
                 success: `Conta cadastrada com sucesso! Enviamos sua senha de acesso para o email ${user.email}.`
@@ -69,20 +76,19 @@ module.exports = {
         } catch (error) {
             console.error(error)
         }
-
-        
     },
 
     async put(req, res) {
         try {
 
             const { user } = req
-            let { name, email, is_admin } = req.body
+
+            let { name, email } = req.body
 
             await User.update(user.id, {
                 name,
                 email,
-                is_admin
+                is_admin: req.body.is_admin || false
             })
 
             return res.render("admin/users/profile", {

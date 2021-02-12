@@ -24,12 +24,12 @@ routes.get('/profile', ProfileValidator.show, ProfileController.index) // Mostra
 
 // users 
 routes.get('/register', UserController.registerForm)
-routes.get('/:id/edit', UserController.edit)
+routes.get('/:id/edit', UserValidator.edit, UserController.edit)
 routes.get('/', UserController.list)
 
-routes.post('/users', UserValidator.post, UserController.post) //Cadastrar um usuário
-routes.put('/users', UserValidator.put, UserController.put) // Editar um usuário
-routes.delete('/users', UserController.delete) // Deletar um usuário
+routes.post('/register', UserValidator.post, UserController.post) //Cadastrar um usuário
+routes.put('/', UserValidator.put, UserController.put) // Editar um usuário
+routes.delete('/', UserController.delete) // Deletar um usuário
 
 
 module.exports = routes

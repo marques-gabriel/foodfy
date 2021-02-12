@@ -6,7 +6,7 @@
                 type="text"
                 name="name"
                 placeholder="Digite seu nome completo"
-                value = "{{ user.name }}"
+                value="{{ user.name }}"
                 required
             >
         </div>
@@ -21,7 +21,7 @@
                 type="email"
                 name="email"
                 placeholder="Digite seu email"
-                value = "{{ user.email }}"
+                value="{{ user.email }}"
                 onblur="Validate.apply(this, 'isEmail')"
             >
         </div>
@@ -33,7 +33,7 @@
         <input
             type="checkbox"
             name="is_admin"
-            value="1"
+            value="true"
             {% if user.is_admin %}
             checked
             {% endif %}

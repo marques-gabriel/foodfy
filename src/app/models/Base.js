@@ -62,27 +62,49 @@ const Base = {
         
     },
 
-    findAll(filters) {
+    async findAll(filters) {
 
-    let query = `SELECT * FROM ${this.table}`
+        let query = `SELECT * FROM ${this.table}`
 
-    if(filters) {
-        Object.keys(filters).map(key => {
+        if(filters) {
+            Object.keys(filters).map(key => {
 
-            // WHERE | OR | AND
-            query += ` ${key}`
-    
-            Object.keys(filters[key]).map(field => {
-                query += ` ${field} = '${filters[key][field]}'`
+                // WHERE | OR | AND
+                query += ` ${key}`
+        
+                Object.keys(filters[key]).map(field => {
+                    query += ` ${field} = '${filters[key][field]}'`
+                })
             })
-        })
-    }
-    
-    const results = db.query(query)
+        }
+        
+        const results =  await db.query(query)
 
-    return results.rows
+        return results.rows
 
-}
+    },
+
+    async findOne(filters) {
+
+        let query = `SELECT * FROM ${this.table}`
+
+        if(filters) {
+            Object.keys(filters).map(key => {
+
+                // WHERE | OR | AND
+                query += ` ${key}`
+        
+                Object.keys(filters[key]).map(field => {
+                    query += ` ${field} = '${filters[key][field]}'`
+                })
+            })
+        }
+        
+        const results = await db.query(query)
+
+        return results.rows[0]
+
+    },
 
 }
 

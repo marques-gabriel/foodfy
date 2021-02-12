@@ -73,6 +73,7 @@ module.exports = {
 
             const recipeId = await Recipe.create({
                 chef_id: req.body.chef,
+                user_id: req.session.userId,
                 title: req.body.title,
                 ingredients: `{${req.body.ingredients}}`,
                 preparation: `{${req.body.preparation}}`,

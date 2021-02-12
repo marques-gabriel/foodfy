@@ -60,7 +60,29 @@ const Base = {
         }
 
         
+    },
+
+    findAll(filters) {
+
+    let query = `SELECT * FROM ${this.table}`
+
+    if(filters) {
+        Object.keys(filters).map(key => {
+
+            // WHERE | OR | AND
+            query += ` ${key}`
+    
+            Object.keys(filters[key]).map(field => {
+                query += ` ${field} = '${filters[key][field]}'`
+            })
+        })
     }
+    
+    const results = db.query(query)
+
+    return results.rows
+
+}
 
 }
 

@@ -94,9 +94,9 @@ module.exports = {
                 is_admin: req.body.is_admin || false
             })
 
-            return res.render("admin/users/profile", {
+            return res.render("admin/users/index", {
                 user: req.body,
-                success: "Conta atualizada com sucesso"
+                success: `Conta de ${name} atualizada com sucesso`
             })
             
         } catch (error) {

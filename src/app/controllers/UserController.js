@@ -51,14 +51,17 @@ module.exports = {
             const emailHtml = (user, password) => `
                 <h2>Olá ${user.name}</h2>
                 <p>Sua conta foi cadastrada com sucesso</p>
-                <p><br/><br/></p>
+                <p><br/></p>
                 <h3>Dados da conta</h3>
                 <p>Nome: ${user.name}</p>
                 <p>Email: ${user.email}</p>
                 <p><br/><br/></p>
                 <strong><p>Essa é a sua senha de acesso (NÃO PASSE PARA NINGUÉM)</p></strong>
-                <p><br/><br/></p>
+                <p><br/></p>
                 <p>Senha: ${password}</p>
+                <a href="http://localhost:3000/admin/users/login">CLIQUE AQUI PARA REALIZAR O LOGIN</a>
+                <p><br/></p>
+
             `
 
             await mailer.sendMail({
@@ -68,9 +71,9 @@ module.exports = {
                 html: emailHtml(user, password)
             })
 
-            return res.render("admin/session/login", {
-                user,
-                success: `Conta cadastrada com sucesso! Enviamos sua senha de acesso para o email ${user.email}.`
+            return res.render("admin/users/index", {
+
+                success: `Conta cadastrada com sucesso! Enviamos a senha de acesso para o email ${user.email}.`
             })
             
         } catch (error) {
@@ -98,7 +101,7 @@ module.exports = {
             
         } catch (error) {
             console.error(error)
-            return res.render("admin/users/profile", {
+            return res.render("admin/users/index", {
                 error: "Algum erro ocorreu"
             })
         }

@@ -22,14 +22,25 @@ async function put(req, res, next) {
         return res.render("admin/users/index", fillAllFields)
     }
 
-    const { id, password } = req.body
+    const { id, password, email } = req.body
 
     if(!password) return res.render("admin/users/profile", {
         user: req.body,
         error: "Coloque sua senha para atualizar seu cadastro"
     })
 
-    const user = await User.find({ where: {id} })
+    const user = await User.findOne({ where: {id} })
+
+        let userEmail = await User.findOne(
+            {
+                where: { email }
+    
+            })
+
+        if (userEmail && (userEmail.id != user.id)) return res.render('admin/users/profile', {
+            user: req.body,
+            error: 'Email já está em uso por outro usuário'
+        })
 
     const passed = await compare(password, user.password)
 
@@ -48,7 +59,7 @@ async function show(req, res, next) {
 
     const { userId: id } = req.session
 
-    const user = await User.find({ where: {id} })
+    const user = await User.findOne({ where: {id} })
 
     if(!user) return res.render("admin/users/register", {
         error: "Usuário não encontrado"

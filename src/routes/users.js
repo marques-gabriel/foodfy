@@ -6,11 +6,15 @@ const UserController = require('../app/controllers/UserController')
 const ProfileController = require('../app/controllers/ProfileController')
 
 const UserValidator = require('../app/validators/userValidator')
+const SessionValidator = require('../app/validators/sessionValidator')
+
 const ProfileValidator = require('../app/validators/profileValidator')
 
 
 // login/logout
 routes.get('/login', SessionController.loginForm)
+routes.post('/login', SessionValidator.login, SessionController.login)
+
 
 // reset password / forgot
 routes.get('/forgot-password', SessionController.forgotForm)
@@ -19,7 +23,7 @@ routes.get('/password-reset', SessionController.resetForm)
 
 // Rotas de perfil de um usuário logado
 routes.get('/profile', ProfileValidator.show, ProfileController.index) // Mostrar o formulário com dados do usuário logado
-// routes.put('/profile', ProfileValidator.put, ProfileController.put)// Editar o usuário logado
+routes.put('/profile', ProfileValidator.put, ProfileController.put)// Editar o usuário logado
 
 
 // users 

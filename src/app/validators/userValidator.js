@@ -64,9 +64,22 @@ async function put(req, res, next) {
         return res.render("admin/users/index", fillAllFields)
     }
 
-    const { id } = req.body
+    const { id, email } = req.body
 
     const user = await User.findOne({ where: {id} })
+
+
+    let userEmail = await User.findOne(
+        {
+            where: { email }
+
+        })
+
+    if (userEmail && (userEmail.id != user.id)) return res.render('admin/users/edit', {
+        user: req.body,
+        error: 'Email já está em uso por outro usuário'
+    })
+
 
     req.user = user
 

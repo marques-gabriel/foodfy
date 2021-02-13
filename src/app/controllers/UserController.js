@@ -46,7 +46,7 @@ module.exports = {
 
             const user = await User.findOne({where: { id: userId }})
 
-            req.session.userId = userId
+            // req.session.userId = userId
 
             const emailHtml = (user, password) => `
                 <h2>Olá ${user.name}</h2>
@@ -120,7 +120,7 @@ module.exports = {
 
             // rodar a remocao do usuario 
             await User.delete(req.body.id)
-            req.session.destroy()
+            // req.session.destroy()
 
             return res.render("admin/users/index", {
                 success: "Conta deletada com sucesso!"

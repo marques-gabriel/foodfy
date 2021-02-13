@@ -25,10 +25,14 @@
     margin-left: 30px;
 }
 
-.header-list-admin li a {
+.header-list-admin li a,
+.header-list-admin li form button {
     font-family: Roboto-Bold;
     font-size: 15px;
     color: #999999;
+    text-transform: uppercase;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .header-list-admin li:nth-child(4) {
@@ -57,7 +61,8 @@
 .header-list-admin li a {
     position: relative;
 }
-.header-list-admin li a::after {
+.header-list-admin li a::after,
+.header-list-admin li form button::after  {
     content: "";
     width: 0;
     height: 2px;
@@ -67,7 +72,8 @@
     bottom: -4px;
 }
 
-.header-list-admin li a:hover::after {
+.header-list-admin li a:hover::after,
+.header-list-admin li form button:hover::after  {
     width: 100%;
     transition: width 200ms ease-in-out 30ms;
 }

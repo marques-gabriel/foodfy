@@ -7,13 +7,14 @@ const ProfileController = require('../app/controllers/ProfileController')
 
 const UserValidator = require('../app/validators/userValidator')
 const SessionValidator = require('../app/validators/sessionValidator')
-
 const ProfileValidator = require('../app/validators/profileValidator')
 
 
 // login/logout
 routes.get('/login', SessionController.loginForm)
 routes.post('/login', SessionValidator.login, SessionController.login)
+routes.post('/logout', SessionController.logout)
+
 
 
 // reset password / forgot
@@ -22,8 +23,8 @@ routes.get('/password-reset', SessionController.resetForm)
 
 
 // Rotas de perfil de um usuário logado
-routes.get('/profile', ProfileValidator.show, ProfileController.index) // Mostrar o formulário com dados do usuário logado
-routes.put('/profile', ProfileValidator.put, ProfileController.put)// Editar o usuário logado
+routes.get('/profile', ProfileValidator.show, ProfileController.index)
+routes.put('/profile', ProfileValidator.put, ProfileController.put)
 
 
 // users 
@@ -31,9 +32,9 @@ routes.get('/register', UserController.registerForm)
 routes.get('/:id/edit', UserValidator.edit, UserController.edit)
 routes.get('/', UserController.list)
 
-routes.post('/register', UserValidator.post, UserController.post) //Cadastrar um usuário
-routes.put('/', UserValidator.put, UserController.put) // Editar um usuário
-routes.delete('/', UserController.delete) // Deletar um usuário
+routes.post('/register', UserValidator.post, UserController.post)
+routes.put('/', UserValidator.put, UserController.put)
+routes.delete('/', UserController.delete)
 
 
 module.exports = routes

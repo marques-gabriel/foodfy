@@ -87,7 +87,7 @@ BEFORE UPDATE ON users
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
 
--- cascade effect when delete recipe
+-- cascade effect when delete recipe or user
 
 ALTER TABLE "recipe_files"
 DROP CONSTRAINT recipe_files_recipe_id_fkey,
@@ -101,6 +101,13 @@ DROP CONSTRAINT recipe_files_file_id_fkey,
 ADD CONSTRAINT recipe_files_file_id_fkey
 FOREIGN KEY ("file_id")
 REFERENCES "files" ("id")
+ON DELETE CASCADE;
+
+ALTER TABLE "recipes"
+DROP CONSTRAINT recipes_user_id_fkey,
+ADD CONSTRAINT recipes_user_id_fkey
+FOREIGN KEY ("user_id")
+REFERENCES "users" ("id")
 ON DELETE CASCADE;
 
 -- restart sequence auto_increment from tables ids

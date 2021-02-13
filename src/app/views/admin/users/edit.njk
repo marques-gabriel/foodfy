@@ -12,10 +12,7 @@
 
         <div class="header-user">
             <h3>Atualizar Usuário</h3>
-            {# <form class="form-delete" action="/admin/users?_method=DELETE" method="post">
-                <input type="hidden" name="essamerda" value="{{user.id}}">
-                <button class="button delete" type="submit">Deletar</button>
-            </form> #}
+            <button class="button delete" form="form-delete" type="submit">Deletar</button>
             <button class="button" type="submit" onclick="Validate.allFields(event)">Salvar</button>
         </div>
 
@@ -28,11 +25,17 @@
                 value="{{user.id}}"
             >
 
-            
         </div>
-
-
     </form>
+
+    <form id="form-delete" action="/admin/users?_method=DELETE" method="post">
+        <input type="hidden" name="id" value="{{user.id}}">
+    </form>
+
+    {% include "./delete-user.njk"%}
+
+
 </section>
+
 
 {% endblock content %}

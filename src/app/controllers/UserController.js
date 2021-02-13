@@ -113,35 +113,21 @@ module.exports = {
 
             const recipes = await Recipe.findAll({where: { user_id: req.body.id }})
 
-            // pegar todas imagens das receitas 
-            const allFilesPromise = recipes.map(recipe => 
-                Recipe.files(recipe.id)
-            )
-
-            let promiseResults = await Promise.all(allFilesPromise)
+            // rodar exclusao das receitas do usuario
+            recipes.map(recipe => {
+                Recipe.delete(recipe.id)
+            })
 
             // rodar a remocao do usuario 
             await User.delete(req.body.id)
             req.session.destroy()
 
-            // remover imagens da pasta public 
-            promiseResults.map(files => {
-                files.map(file => {
-
-                    try {
-                        unlinkSync(file.path)
-                    } catch (err) {
-                        console.log(err)
-                    }
-                })
-            })
-
-            return res.render("admin/session/login", {
+            return res.render("admin/users/index", {
                 success: "Conta deletada com sucesso!"
             })
 
         } catch (error) {
-            console.error(err)
+            console.error(error)
             return res.render("admin/users/profile", {
                 user: req.body,
                 error: "Erro ao deletar a conta"

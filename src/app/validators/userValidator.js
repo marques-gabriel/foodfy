@@ -87,8 +87,27 @@ async function put(req, res, next) {
 
 }
 
+async function deleteUser(req, res, next) {
+
+    const { id } = req.body
+    const ownUser = req.session.userId
+
+    const user = await User.findOne({ where: {id} })
+
+    if (id == ownUser) return res.render('admin/users/edit', {
+        user,
+        error: 'Você não pode excluir sua própria conta'
+    })
+
+    req.user = user
+
+    next()
+
+}
+
 module.exports = {
     post,
     edit,
-    put
+    put,
+    deleteUser
 }

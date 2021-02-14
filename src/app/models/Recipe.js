@@ -8,7 +8,7 @@ module.exports = {
 
     ...Base,
 
-    async all(callback) {
+    async all() {
 
         try {
 
@@ -60,6 +60,24 @@ module.exports = {
             } catch (error) {
                 console.error(error)
             }
+
+    },
+
+    async findRecipesByUsers(id) {
+
+        try {
+
+            let results = await db.query(`
+                SELECT recipes.*, chefs.name AS chef_name
+                FROM recipes
+                LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+                WHERE recipes.user_id = $1`, [id])
+
+                return results.rows
+            
+        } catch (error) {
+            console.error(error)
+        }
 
     },
 

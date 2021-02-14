@@ -7,10 +7,11 @@ const chefs = require('./chefs')
 
 const users = require('./users')
 
+const { onlyUsers } = require('../app/middlewares/session')
 
 routes.use('/', site)
-routes.use('/admin/recipes', recipes)
-routes.use('/admin/chefs', chefs)
+routes.use('/admin/recipes', onlyUsers, recipes)
+routes.use('/admin/chefs', onlyUsers, chefs)
 
 routes.use('/admin/users', users)
 

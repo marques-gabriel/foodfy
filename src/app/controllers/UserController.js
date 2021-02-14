@@ -4,7 +4,6 @@ const Recipe = require('../models/Recipe')
 
 const crypto = require('crypto')
 const mailer = require('../../lib/mailer')
-const { Console } = require('console')
 
 
 module.exports = {
@@ -24,8 +23,13 @@ module.exports = {
         return res.render("admin/users/edit", { user })
     },
 
-    list(req, res) {
-        return res.render("admin/users/index")
+    async list(req, res) {
+
+        const users = await User.findAll()
+
+        console.log(users)
+
+        return res.render("admin/users/index", { users })
     },
 
     async post(req, res) {

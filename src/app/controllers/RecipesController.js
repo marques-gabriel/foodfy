@@ -1,5 +1,6 @@
 const Recipe = require ('../models/Recipe')
 const File = require('../models/File')
+const User = require('../models/User')
 const RecipeFiles = require('../models/Recipe_Files')
 
 
@@ -8,29 +9,40 @@ module.exports = {
 
         try {
 
-            let { filter, page, limit } = req.query
-            page = page || 1
-            limit = limit || 6
-            let offset = limit * (page - 1)
+            // let { filter, page, limit } = req.query
+            // page = page || 1
+            // limit = limit || 6
+            // let offset = limit * (page - 1)
 
-            const params = {
-                filter,
-                page,
-                limit,
-                offset
+            // const params = {
+            //     filter,
+            //     page,
+            //     limit,
+            //     offset
+            // }
+
+            const userId = req.session.userId
+            const user =  await User.findOne({ where: { id: userId }})
+
+            let recipes
+
+            if(user.is_admin == true) {
+
+                recipes = await Recipe.all()
+
+            } else {
+
+                recipes = await Recipe.findRecipesByUsers(req.session.userId)
             }
 
-            let recipes = await Recipe.paginate(params)
-
             if (recipes == 0) return res.render("admin/recipes/index",{ 
-                filter,
                 success: 'Não encontramos receitas cadastradas no momento'
              })
 
-            const pagination = {
-                total: Math.ceil (recipes[0].total / limit),
-                page
-            }
+            // const pagination = {
+            //     total: Math.ceil (recipes[0].total / limit),
+            //     page
+            // }
 
             async function getImage(recipeId) {
                 let results = await Recipe.files(recipeId)
@@ -46,7 +58,7 @@ module.exports = {
 
             recipes = await Promise.all(recipesPromise)
             
-            return res.render("admin/recipes/index", { recipes, pagination, filter })
+            return res.render("admin/recipes/index", { recipes })
 
         } catch (error) {
             console.error(error)

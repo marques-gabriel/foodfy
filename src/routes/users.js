@@ -9,6 +9,9 @@ const UserValidator = require('../app/validators/userValidator')
 const SessionValidator = require('../app/validators/sessionValidator')
 const ProfileValidator = require('../app/validators/profileValidator')
 
+const { onlyUsers, onlyAdmin } = require('../app/middlewares/session')
+
+
 
 // login/logout
 routes.get('/login', SessionController.loginForm)
@@ -25,18 +28,18 @@ routes.post('/password-reset', SessionValidator.reset, SessionController.reset)
 
 
 // Rotas de perfil de um usuário logado
-routes.get('/profile', ProfileValidator.show, ProfileController.index)
-routes.put('/profile', ProfileValidator.put, ProfileController.put)
+routes.get('/profile', onlyUsers, ProfileValidator.show, ProfileController.index)
+routes.put('/profile', onlyUsers, ProfileValidator.put, ProfileController.put)
 
 
 // users 
-routes.get('/register', UserController.registerForm)
-routes.get('/:id/edit', UserValidator.edit, UserController.edit)
-routes.get('/', UserController.list)
+routes.get('/register', onlyUsers, onlyAdmin, UserController.registerForm)
+routes.get('/:id/edit', onlyUsers, onlyAdmin, UserValidator.edit, UserController.edit)
+routes.get('/', onlyUsers, onlyAdmin, UserController.list)
 
-routes.post('/register', UserValidator.post, UserController.post)
-routes.put('/', UserValidator.put, UserController.put)
-routes.delete('/', UserController.delete)
+routes.post('/register', onlyUsers, onlyAdmin, UserValidator.post, UserController.post)
+routes.put('/', onlyUsers, onlyAdmin, UserValidator.put, UserController.put)
+routes.delete('/', onlyUsers, onlyAdmin, UserValidator.deleteUser, UserController.delete)
 
 
 module.exports = routes

@@ -17,7 +17,6 @@ module.exports = {
 
             const { user } = req
 
-
             // const user = await User.findOne({where: { id: req.params.id }})
 
         return res.render("admin/users/edit", { user })
@@ -26,8 +25,6 @@ module.exports = {
     async list(req, res) {
 
         const users = await User.findAll()
-
-        console.log(users)
 
         return res.render("admin/users/index", { users })
     },
@@ -75,8 +72,10 @@ module.exports = {
                 html: emailHtml(user, password)
             })
 
-            return res.render("admin/users/index", {
+            const users = await User.findAll()
 
+            return res.render("admin/users/index", {
+                users,
                 success: `Conta cadastrada com sucesso! Enviamos a senha de acesso para o email ${user.email}.`
             })
             

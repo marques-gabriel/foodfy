@@ -19,7 +19,7 @@ async function put(req, res, next) {
 
     const fillAllFields = checkAllFields(req.body)
     if(fillAllFields) {
-        return res.render("admin/users/index", fillAllFields)
+        return res.render("admin/users/profile", fillAllFields)
     }
 
     const { id, password, email } = req.body

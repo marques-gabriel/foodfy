@@ -1,9 +1,16 @@
-{% extends "site/layout.njk" %}
+{% extends "admin/session/layout.njk" %}
+
 {% block content %}
 
-    <div class="erro">
+    <div class="notFound">
         <h1> erro 404 </h1>
-        <p> Essa página não existe</p>
+        <p> Essa página não existe, que tal voltar para onde você estava antes?</p>
+        <a href="#" onclick="history.back()">VOLTAR</a>
     </div>
-    
+
+    {% include "./styles.njk"%}
 {% endblock content %}
+
+
+
+    

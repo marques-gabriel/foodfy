@@ -122,13 +122,17 @@ body {
 
 /* === FOOTER === */
 footer {
+
+    display: grid;
+    grid-template-columns: 1fr auto;
     background: #EEEEEE;
     height: 62px;
     width: 100%;
     margin-top: auto;
 }
 
-footer p {
+footer p,
+footer p a {
     font-size: 14px;
     color: #999999;
     text-align: center;
@@ -409,4 +413,27 @@ footer p {
 .pagination a:hover {
     color: grey;
     border-bottom: 1px solid grey;
+}
+
+/* page not-found */
+
+.notFound {
+    margin: 0 auto;
+    font-family: Roboto-Bold;
+    font-size: 18px;
+    color: #999999;
+    text-transform: uppercase;
+    line-height: 72px;
+    text-align: center;
+}
+.notFound h1 {
+    color: black;
+    font-weight: bold;
+}
+
+.notFound  a {
+    padding: 9px 20px;
+    background: #6558C3;
+    color: white;
+    border-radius: 4px;
 }

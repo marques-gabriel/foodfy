@@ -56,7 +56,7 @@ async function reset(req, res, next) {
     if(!user) return res.render("admin/session/password-reset", {
         user: req.body,
         token,
-        error: "Usuário não cadastrado"
+        error: "Email não localizado"
     })
 
     if(password != passwordRepeat)
@@ -68,7 +68,6 @@ async function reset(req, res, next) {
 
     if (token != user.reset_token) return res.render('admin/session/password-reset', {
         user: req.body,
-        token,
         error: 'Token inválido. Solicite uma nova recuperação de senha'
     }) 
 
@@ -77,7 +76,6 @@ async function reset(req, res, next) {
 
     if( now > user.reset_token_expires) return res.render('admin/session/password-reset', {
         user: req.body,
-        token,
         error: 'Token expirado. Solicite uma nova recuperação de senha'
     }) 
 

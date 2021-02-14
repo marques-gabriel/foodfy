@@ -8,7 +8,11 @@
 
     <section class="menu menu-admin">
 
-        <h3>Gerenciar chefs</h3>
+        <div class="header-chefs">
+            <h3>Gerenciar chefs</h3>
+            <a class="button chef-add" href="/admin/chefs/create">Novo</a>
+        </div>
+        
         <div class="menu-container-admin-chef">
 
             {% for chef in chefs %}

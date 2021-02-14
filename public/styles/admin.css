@@ -12,7 +12,7 @@
 }
 .header-admin-menu {
     display: grid;
-    grid-template-columns: .0fr auto;
+    grid-template-columns: .0fr auto .0fr;
     align-items: center;
     gap: 50px;
     width: 940px;
@@ -35,9 +35,9 @@
     cursor: pointer;
 }
 
-.header-list-admin li:nth-child(4) {
+.header-list-admin li:nth-child(5) {
     position: absolute;
-    margin-left: 470px;
+    margin-left: 400px;
 }
 
 .logo-admin {
@@ -407,11 +407,6 @@ a#button-edit {
     gap: 20px;
  }
 
- .menu-admin > h3 {
-     margin-top: 50px;
-     margin-bottom: 30px;
- }
-
  .recipe-img-admin img {
     border-radius: 8.57px;
     width: 172px;
@@ -495,4 +490,42 @@ a#button-edit {
     color: white;
     max-width: 30%;
     
+}
+
+/* Listar receitas e chefs */
+
+.header-recipes, .header-chefs {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 16px;
+}
+
+.header-recipes button,
+.header-recipes a,
+.header-chefs button,
+.header-chefs a {
+    text-align: right;
+    cursor: pointer;
+    padding: 9px 35px;
+}
+
+.button.recipe-add,
+.button.chef-add {
+
+    background: #7159C1;
+    padding: 9px 52px;
+    border-radius: 4px;
+    color: white;
+
+}
+
+.header-recipes h3,
+.header-chefs h3 {
+
+    font-family: Helvetica-Bold;
+    font-size: 24px;
+}
+
+.menu.menu-admin {
+    margin-top: 54px
 }

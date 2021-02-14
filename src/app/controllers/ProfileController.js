@@ -32,7 +32,7 @@ module.exports = {
         } catch (error) {
             console.error(error)
             return res.render("admin/users/profile", {
-                error: "Algum erro ocorreu"
+                error: "Algum erro ocorreu ao atualizar seu perfil"
             })
         }
 

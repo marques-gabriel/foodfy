@@ -8,7 +8,11 @@
 
     <section class="menu menu-admin">
 
-        <h3>Gerenciar receitas</h3>
+        <div class="header-recipes">
+            <h3>Gerenciar receitas</h3>
+            <a class="button recipe-add" href="/admin/recipes/create">Novo</a>
+        </div>
+
         <div class="menu-container-admin">
 
             {% for recipe in recipes %}    

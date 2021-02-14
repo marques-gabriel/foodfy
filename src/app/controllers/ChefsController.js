@@ -9,6 +9,10 @@ module.exports = {
 
             let chefs = await Chef.all()
 
+            if (chefs == 0) return res.render("admin/chefs/index",{ 
+                success: 'Não encontramos chefes cadastrados no momento'
+             })
+
             async function getImage(fileId) {
                 let results = await Chef.files(fileId)
                 const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)

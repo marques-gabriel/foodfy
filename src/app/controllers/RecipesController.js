@@ -119,6 +119,9 @@ module.exports = {
 
             const { userId } = req.session
 
+            const user = await User.findOne({ where: {id: userId} })
+
+
             let results = await Recipe.find(req.params.id)
             const recipe = results.rows[0]
 
@@ -140,7 +143,7 @@ module.exports = {
                 src: `${file.path.replace("public", "")}`
             }))
             
-            return res.render("admin/recipes/show", { titles, recipe, files, ownUser })
+            return res.render("admin/recipes/show", { titles, recipe, files, ownUser, user })
             
         } catch (error) {
             console.error(error)

@@ -10,7 +10,7 @@
 <div class="detail-container">
 
     <h3> Receita: {{recipe.title}} </h3>
-    {% if ownUser %}
+    {% if ownUser or user.is_admin%}
     <a href="/admin/recipes/{{recipe.id}}/edit" class="buttons" id="button-edit">Editar receita</a>
     {% endif %}
 

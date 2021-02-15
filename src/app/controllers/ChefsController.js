@@ -1,6 +1,7 @@
 const Chef = require ('../models/Chef')
 const File = require('../models/File')
 const Recipe = require ('../models/Recipe')
+const User = require ('../models/User')
 
 module.exports = {
     async index(req, res) {
@@ -9,7 +10,12 @@ module.exports = {
 
             let chefs = await Chef.all()
 
+            const { userId: id } = req.session
+
+            const user = await User.findOne({ where: {id} })
+
             if (chefs == 0) return res.render("admin/chefs/index",{ 
+                user,
                 success: 'Não encontramos chefes cadastrados no momento'
              })
 
@@ -27,7 +33,7 @@ module.exports = {
 
             chefs = await Promise.all(chefsPromise)
 
-            return res.render("admin/chefs/index", {chefs})
+            return res.render("admin/chefs/index", {chefs, user})
             
         } catch (error) {
             console.error(error)

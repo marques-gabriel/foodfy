@@ -66,7 +66,7 @@
     display: grid;
     grid-template-rows: 1fr 1fr auto;
     grid-row-gap: 5px;
-    min-width: 172px;
+    min-width: 200px;
 
 }
 
@@ -94,17 +94,24 @@
     cursor: pointer;
 }
 
+.user-buttons a {
+    width: 50%;
+
+}
+
 .button-remove{
     font-family: Helvetica-Bold;
     font-size: 14px;
     color: #F55A5A;
     background: none;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 
 .user-buttons {
     display: grid;
-    grid-template-columns: .0fr .7fr;
+    grid-template-columns: auto .8fr;
     /* gap: 16px; */
 }
 

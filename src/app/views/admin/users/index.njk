@@ -18,18 +18,39 @@
 
             {% for user in users %}    
 
-            <div class="user-container" id="">
-                <div class="user-info" id="">
+            <div class="user-container">
+                <div class="user-info">
                     <h3 class="user-name">{{user.name}}</h3>
                     <p class="user-email">{{user.email}}</p>
                     <div class="user-buttons">
                         <a class="button-editar" href="/admin/users/{{user.id}}/edit">Editar</a>
-                        <button class="button-remove" type="submit">Remover</button>
+                        <form id="user-delete" action="/admin/users?_method=DELETE" method="post">
+                            <input type="hidden" name="id" value="{{user.id}}">
+                            <button class="button-remove" type="submit">Remover</button>
+                        </form>
                     </div>
                 </div>
+
             </div>
 
             {% endfor %}
+
+            <script>
+                const formsDelete = document.querySelectorAll("#user-delete")
+
+                for (form of formsDelete) {
+
+                    form.addEventListener("submit", function(event){
+
+                    const confirmation = confirm("Tem certeza que deseja excluir esse usuário?")
+
+                    if(!confirmation) {
+                        event.preventDefault()
+                    }
+                })
+
+                }
+            </script>
 
         </div>
 

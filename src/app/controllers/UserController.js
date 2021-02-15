@@ -97,8 +97,12 @@ module.exports = {
                 is_admin: req.body.is_admin || false
             })
 
+            const users = await User.findAll()
+
+
             return res.render("admin/users/index", {
                 user: req.body,
+                users,
                 success: `Conta de ${name} atualizada com sucesso`
             })
             
@@ -123,9 +127,11 @@ module.exports = {
 
             // rodar a remocao do usuario 
             await User.delete(req.body.id)
-            // req.session.destroy()
+
+            const users = await User.findAll()
 
             return res.render("admin/users/index", {
+                users,
                 success: "Conta deletada com sucesso!"
             })
 

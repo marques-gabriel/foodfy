@@ -78,7 +78,7 @@ const Base = {
             })
         }
         
-        const results =  await db.query(query)
+        const results =  await db.query(`${query} ORDER BY updated_at DESC`)
 
         return results.rows
 

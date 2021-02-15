@@ -10,7 +10,11 @@
 
         <div class="header-chefs">
             <h3>Gerenciar chefs</h3>
-            <a class="button chef-add" href="/admin/chefs/create">Novo</a>
+
+            {% if user.is_admin == true %}
+                <a class="button chef-add" href="/admin/chefs/create">Novo chefe</a>
+            {% endif %}
+
         </div>
         
         <div class="menu-container-admin-chef">

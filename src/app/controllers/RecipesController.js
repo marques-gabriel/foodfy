@@ -117,9 +117,13 @@ module.exports = {
 
         try {
 
-            let results = await Recipe.find(req.params.id)
+            const { userId } = req.session
 
+            let results = await Recipe.find(req.params.id)
             const recipe = results.rows[0]
+
+            const ownUser = recipe.user_id == userId ? true : false
+
             if (!recipe) return res.render("admin/recipes/index", {
                 error: 'Receita não encontrada'
             })
@@ -136,7 +140,7 @@ module.exports = {
                 src: `${file.path.replace("public", "")}`
             }))
             
-            return res.render("admin/recipes/show", { titles, recipe, files })
+            return res.render("admin/recipes/show", { titles, recipe, files, ownUser })
             
         } catch (error) {
             console.error(error)

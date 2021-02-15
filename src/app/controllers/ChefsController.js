@@ -80,6 +80,10 @@ module.exports = {
 
             let results = await Chef.find(req.params.id)
 
+            const { userId: id } = req.session
+
+            const user = await User.findOne({ where: {id} })
+
             const chef = results.rows[0]
             if (!chef) return res.render("admin/chefs/index", {
                 error: 'Chefe não encontrado'
@@ -111,7 +115,7 @@ module.exports = {
             recipes = await Promise.all(recipesPromise)
 
                 
-            return res.render("admin/chefs/show", { chef, recipes, fileChef})
+            return res.render("admin/chefs/show", { chef, recipes, fileChef, user})
             
         } catch (error) {
             console.error(error)

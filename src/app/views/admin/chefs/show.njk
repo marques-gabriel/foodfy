@@ -10,7 +10,9 @@
 <div class="detail-container">
 
     <h3> Chef: {{chef.name}}</h3>
+    {% if user.is_admin == true %}
     <a href="/admin/chefs/{{chef.id}}/edit" class="buttons" id="button-edit">Editar Chef</a>
+    {% endif%}
 
     <div class="banner-detail">
         <div class="banner-image-chef">

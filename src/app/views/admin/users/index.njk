@@ -20,7 +20,8 @@
 
             <div class="user-container">
                 <div class="user-info">
-                    <h3 class="user-name">{{user.name}}</h3>
+                    <h3 class="user-name">{{user.name}} {% if user.is_admin == true %}
+                    [Admin]{% endif %}</h3>
                     <p class="user-email">{{user.email}}</p>
                     <div class="user-buttons">
                         <a class="button-editar" href="/admin/users/{{user.id}}/edit">Editar</a>

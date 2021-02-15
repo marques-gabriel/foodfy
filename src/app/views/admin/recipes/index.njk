@@ -9,7 +9,15 @@
     <section class="menu menu-admin">
 
         <div class="header-recipes">
+
+            {% if user.is_admin == true %}
             <h3>Gerenciar receitas</h3>
+            {% endif%} 
+
+            {% if user.is_admin == false %}
+            <h3>Minhas receitas</h3>
+            {% endif%}
+            
             <a class="button recipe-add" href="/admin/recipes/create">Nova receita</a>
         </div>
 

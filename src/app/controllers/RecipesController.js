@@ -36,6 +36,7 @@ module.exports = {
             }
 
             if (recipes == 0) return res.render("admin/recipes/index",{ 
+                user,
                 success: 'Não encontramos receitas cadastradas no momento'
              })
 
@@ -58,7 +59,7 @@ module.exports = {
 
             recipes = await Promise.all(recipesPromise)
             
-            return res.render("admin/recipes/index", { recipes })
+            return res.render("admin/recipes/index", { recipes, user })
 
         } catch (error) {
             console.error(error)

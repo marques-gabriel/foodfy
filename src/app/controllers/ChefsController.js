@@ -33,7 +33,12 @@ module.exports = {
 
             chefs = await Promise.all(chefsPromise)
 
-            return res.render("admin/chefs/index", {chefs, user})
+            const { success, error } = req.session
+
+            req.session.success = ""
+            req.session.error = ""
+
+            return res.render("admin/chefs/index", {chefs, user, success, error})
             
         } catch (error) {
             console.error(error)
@@ -65,11 +70,13 @@ module.exports = {
             file_id: file
         })
 
-        return res.redirect(`/admin/chefs/${chefId}`)
+        return res.render('admin/chefs/success')
 
             
         } catch (error) {
             console.error(error)
+            req.session.error = "Erro ao criar chefe"
+            return res.redirect("/admin/chefs")
         }
 
     },
@@ -114,8 +121,12 @@ module.exports = {
 
             recipes = await Promise.all(recipesPromise)
 
-                
-            return res.render("admin/chefs/show", { chef, recipes, fileChef, user})
+            const { success, error } = req.session
+
+            req.session.success = ""
+            req.session.error = ""
+
+            return res.render("admin/chefs/show", { chef, recipes, fileChef, user, success, error})
             
         } catch (error) {
             console.error(error)
@@ -186,11 +197,15 @@ module.exports = {
 
                 await Promise.all(removedFilesPromise)
             }
+
+            req.session.success = "Chefe atualizado com sucesso"
             
             return res.redirect(`/admin/chefs/${chefId}`)
 
         } catch (error) {
             console.error(error)
+            req.session.error = "Erro ao atualizar chefe"
+            return res.redirect("/admin/chefs")
         }
     },
 
@@ -206,11 +221,16 @@ module.exports = {
 
             await Chef.delete(req.body.id, files)
 
+            req.session.success = "Chefe deletada com sucesso"
+
             //Chefs que possuem receitas não podem ser deletados.
             return res.redirect("/admin/chefs")
             
         } catch (error) {
             console.error(error)
+            req.session.error = "Erro ao deletar chefe"
+            return res.redirect("/admin/chefs")
+
         }
     }
 }

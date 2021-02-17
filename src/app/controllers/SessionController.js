@@ -35,7 +35,7 @@ module.exports = {
     logout(req, res) {
 
         req.session.destroy()
-        return res.redirect("/")
+        return res.render("admin/session/login", {success:"Logout realizado com sucesso"})
 
     },
 

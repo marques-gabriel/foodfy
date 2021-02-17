@@ -9,18 +9,6 @@ module.exports = {
 
         try {
 
-            // let { filter, page, limit } = req.query
-            // page = page || 1
-            // limit = limit || 6
-            // let offset = limit * (page - 1)
-
-            // const params = {
-            //     filter,
-            //     page,
-            //     limit,
-            //     offset
-            // }
-
             const userId = req.session.userId
             const user =  await User.findOne({ where: { id: userId }})
 
@@ -40,11 +28,6 @@ module.exports = {
                 success: 'Não encontramos receitas cadastradas no momento'
              })
 
-            // const pagination = {
-            //     total: Math.ceil (recipes[0].total / limit),
-            //     page
-            // }
-
             async function getImage(recipeId) {
                 let results = await Recipe.files(recipeId)
                 const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
@@ -58,8 +41,13 @@ module.exports = {
             })
 
             recipes = await Promise.all(recipesPromise)
+
+            const { success, error } = req.session
+
+            req.session.success = ""
+            req.session.error = ""
             
-            return res.render("admin/recipes/index", { recipes, user })
+            return res.render("admin/recipes/index", { recipes, user, success, error })
 
         } catch (error) {
             console.error(error)
@@ -106,10 +94,13 @@ module.exports = {
 
             await Promise.all(recipeFilesResults)
 
-            return res.redirect(`/admin/recipes/${recipeId}`)
-            
+
+            return res.render('admin/recipes/success')
+
         } catch (error) {
             console.error(error)
+            req.session.error = "Erro ao criar receita"
+            return res.redirect("/admin/recipes")
         }
         
     },
@@ -132,19 +123,19 @@ module.exports = {
                 error: 'Receita não encontrada'
             })
 
-            const titles = {
-                ingredients: "Ingredientes",
-                preparation: "Modo de Preparo",
-                information: "Informações Adiconais"
-            }
-
             results = await Recipe.files(recipe.id)
             const files = results.rows.map(file => ({
                 ...file,
                 src: `${file.path.replace("public", "")}`
             }))
+
+            const { success, error } = req.session
+
+            req.session.success = ""
+            req.session.error = ""
+
             
-            return res.render("admin/recipes/show", { titles, recipe, files, ownUser, user })
+            return res.render("admin/recipes/show", { recipe, files, ownUser, user, success, error })
             
         } catch (error) {
             console.error(error)
@@ -223,11 +214,17 @@ module.exports = {
                 information: req.body.information,
             
             })
-            
+
+            req.session.success = "Receita atualizada com sucesso"
+
             return res.redirect(`/admin/recipes/${recipeId}`)
             
         } catch (error) {
             console.error(error)
+
+            req.session.error = "Erro ao atualizar receita"
+            return res.redirect(`/admin/recipes`)
+
         }    
     },
 
@@ -236,11 +233,16 @@ module.exports = {
         try {
 
             await Recipe.delete(req.body.id)
+
+            req.session.success = "Receita deletada com sucesso"
         
             return res.redirect("/admin/recipes")
             
         } catch (error) {
             console.error(error)
+            req.session.error = "Erro ao deletar receita"
+            return res.redirect("/admin/recipes")
+
         }       
     }
 }

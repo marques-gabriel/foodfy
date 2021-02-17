@@ -1,0 +1,28 @@
+<section class="order-success">
+
+
+    <h2>Receita cadastrada com sucesso!</h2>
+    <div class="success-lottie"></div>
+
+    <p>Obrigado por cadastrar sua receita</p>
+
+    <a href="/admin/recipes">Voltar para o sistema</a>
+
+
+</section>
+
+<script src="/lottie.min.js"></script>
+
+<script>
+    const element = document.querySelector('.success-lottie')
+
+    lottie.loadAnimation({
+    container: element,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/45726-recipes-animation.json'
+    });
+</script>
+
+{% include "../../styles.njk"%}

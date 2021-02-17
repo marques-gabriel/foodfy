@@ -1,0 +1,29 @@
+.order-success {
+
+    text-align: center;
+    margin: auto;
+
+    line-height: 72px;
+
+}
+
+.order-success .success-lottie {
+    height: 200px;
+}
+
+.order-success a {
+    color: white;
+    padding: 9px 20px;
+    background: #6558C3;
+    border-radius: 4px;
+
+}
+
+.order-success p {
+
+    font-family: Roboto-Bold;
+    font-size: 18px;
+    color: #999999;
+}
+
+

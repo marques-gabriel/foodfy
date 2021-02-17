@@ -140,13 +140,6 @@ module.exports = {
             if (!recipe) return res.render("site/home", {
                 error: 'Receita não encontrada'
             })
-    
-            const titles = {
-                ingredients: "Ingredientes",
-                preparation: "Modo de Preparo",
-                information: "Informações Adiconais"
-        
-            }
 
             results = await Recipe.files(recipe.id)
             const files = results.rows.map(file => ({
@@ -155,7 +148,7 @@ module.exports = {
             }))
             
                 
-            return res.render("site/recipe", { titles, recipe, files })
+            return res.render("site/recipe", { recipe, files })
             
         } catch (error) {
             console.error(error)

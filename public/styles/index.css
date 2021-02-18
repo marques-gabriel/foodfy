@@ -62,23 +62,12 @@ header{
     transition: width 200ms ease-in-out 30ms;
 }
 
+.header-list li a.active {
+    font-weight: bold;
+}
+
 .header-menu img:hover {
     filter: brightness(1000%)
-}
-
-#header-about {
-    font-weight: bold;
-    display: inline;
-}
-
-#header-recipes {
-    font-weight: bold;
-    display: inline;
-}
-
-#header-chefs {
-    font-weight: bold;
-    display: inline;
 }
 
  /* FILTER */

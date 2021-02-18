@@ -1,3 +1,14 @@
+// Pagina ativa
+
+const currentPage = location.pathname
+const menuItems = document.querySelectorAll(".header-list li a")
+
+for ( item of menuItems) {
+    if (currentPage.includes(item.getAttribute("href"))) {
+        item.classList.add("active")
+    }
+}
+
 // === MOSTRAR/ESCONDER ===
 
 

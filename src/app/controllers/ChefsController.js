@@ -221,7 +221,7 @@ module.exports = {
 
             await Chef.delete(req.body.id, files)
 
-            req.session.success = "Chefe deletada com sucesso"
+            req.session.success = "Chefe deletado com sucesso"
 
             //Chefs que possuem receitas não podem ser deletados.
             return res.redirect("/admin/chefs")

@@ -1,0 +1,123 @@
+/* ==== AVATAR CHEF ==== */
+
+form .avatar-file {
+    display: flex;
+}
+
+form #avatar {
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+    width: 139px;
+    border-radius: 4px; 
+    cursor: pointer;
+
+}
+
+form #avatar p {
+    background: #6558C3;
+    padding: 8px 12px;
+    text-align: center;
+    font-size: 16px;
+    color: #FFFFFF;
+    box-sizing: border-box;
+}
+
+form #avatar #avatar-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+form .avatar-file #avatar-preview  img {
+    width: 149px;
+    height: 149px;
+    object-fit: cover;
+}
+
+form .avatar-file #avatar-preview {
+    display: flex;
+    width: 100%;
+}
+
+.avatar-file #avatar-preview .photo {
+    position: relative;
+
+}
+
+.avatar-file #avatar-preview .photo i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.8);
+
+    color: rgba(255, 0, 0, 0.514);
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 300%;
+    cursor: pointer;
+
+    transition: opacity 200ms;
+
+    opacity: 0;
+}
+
+.avatar-file #avatar-preview  .photo:hover i {
+    opacity: 1;
+}
+
+/* === LISTAR CHEFS === */
+
+
+.menu-container-admin-chef {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-top: 72px;
+}
+
+.chef-img-admin img {
+   border-radius: 50%;
+   width: 64px;
+   height: 64px;
+}
+
+.chef-info h3 {
+   font-family: Roboto-Regular;
+   font-size: 18px;
+   color: #111111;
+   font-weight: normal;
+   min-width: 156px;
+}
+
+.chef-container-admin {
+   display: grid;
+   grid-template-columns: 0.1fr 1fr;
+   gap: 20px;
+   align-items: center;
+}
+
+/* === DETALHES CHEF === */
+
+.banner-image-chef {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.banner-image-chef img {
+   height: 200px;
+   width: 200px;
+   border-radius: 50%;
+}

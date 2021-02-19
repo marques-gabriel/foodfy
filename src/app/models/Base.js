@@ -1,6 +1,7 @@
 const db =  require('../../config/db')
 
 const Base = {
+    
     init({ table }) {
         if(!table) throw new Error('Invalid Params')
 
@@ -104,7 +105,7 @@ const Base = {
 
         return results.rows[0]
 
-    },
+    }
 
 }
 

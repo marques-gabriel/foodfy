@@ -1,5 +1,5 @@
-const Recipe = require ('../models/Recipe')
 const Chef = require ('../models/Chef')
+const LoadRecipesService = require('../services/LoadRecipesService')
 
 module.exports = {
 
@@ -19,42 +19,19 @@ module.exports = {
                 offset
             }
 
-            const home = {
-                title: "As melhores receitas",
-                text: "Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.",
-                img: "images/chef.png",
-                subTitle: "Mais Acessadas"
-            }
-
-            let recipes = await Recipe.paginate(params)
+            let recipes = await LoadRecipesService.load('RecipesParams', params)
 
             if (recipes == 0) return res.render("site/home",{ 
-                home,
                 filter,
                 error: 'Não encontramos receitas cadastradas no momento'
              })
-
 
             const pagination = {
                 total: Math.ceil (recipes[0].total / limit),
                 page
             }
 
-            async function getImage(recipeId) {
-                let results = await Recipe.files(recipeId)
-                const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
-    
-                return files[0]
-            }
-
-            const recipesPromise = recipes.map(async recipe => {
-                recipe.img = await getImage(recipe.id)
-                return recipe
-            })
-
-            recipes = await Promise.all(recipesPromise)
-
-            return res.render("site/home",{home, items: recipes, pagination,filter} )
+            return res.render("site/home",{ items: recipes, pagination, filter} )
             
         } catch (error) {
             console.error(error)
@@ -77,8 +54,8 @@ module.exports = {
                 offset
             }
 
-            let recipes = await Recipe.paginate(params)
-
+            let recipes = await LoadRecipesService.load('RecipesParams', params)
+            
             if (recipes == 0) return res.render("site/recipes",{ 
                 filter,
                 error: 'Não encontramos receitas com esse termo'
@@ -90,21 +67,7 @@ module.exports = {
                 page
             }
             
-            async function getImage(recipeId) {
-                let results = await Recipe.files(recipeId)
-                const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
-    
-                return files[0]
-            }
-
-            const recipesPromise = recipes.map(async recipe => {
-                recipe.img = await getImage(recipe.id)
-                return recipe
-            })
-
-            recipes = await Promise.all(recipesPromise)
-            
-            return res.render("site/recipes",{ items: recipes, pagination,filter} )
+            return res.render("site/recipes",{ items: recipes, pagination, filter} )
 
         } catch (error) {
             console.error(error)
@@ -134,21 +97,13 @@ module.exports = {
 
         try {
 
-            let results = await Recipe.find(req.params.id)
-            const recipe = results.rows[0]
+            const recipe = await LoadRecipesService.load('Recipe', req.params.id)
 
-            if (!recipe) return res.render("site/home", {
+            if (!recipe) return res.render("site/recipe", {
                 error: 'Receita não encontrada'
             })
-
-            results = await Recipe.files(recipe.id)
-            const files = results.rows.map(file => ({
-                ...file,
-                src: `${file.path.replace("public", "")}`
-            }))
-            
                 
-            return res.render("site/recipe", { recipe, files })
+            return res.render("site/recipe", { recipe })
             
         } catch (error) {
             console.error(error)
@@ -199,36 +154,19 @@ module.exports = {
                 offset
             }
 
-            let recipes = await Recipe.paginate(params)
-
-            if(recipes == 0) 
-                return res.render("site/search",{ filter } )
+            let recipes = await LoadRecipesService.load('RecipesParams', params)
 
             if (recipes == 0) return res.render("site/search", {
                 filter,
                 error: 'Não encontramos receitas com esse termo'
             })
 
-            async function getImage(recipeId) {
-                let results = await Recipe.files(recipeId)
-                const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
-    
-                return files[0]
-            }
-
-            const recipesPromise = recipes.map(async recipe => {
-                recipe.img = await getImage(recipe.id)
-                return recipe
-            })
-
-            recipes = await Promise.all(recipesPromise)
-
             const pagination = {
                 total: Math.ceil (recipes[0].total / limit),
                 page
             }
 
-            return res.render("site/search",{items: recipes, pagination,filter} )
+            return res.render("site/search",{items: recipes, pagination, filter} )
 
         } catch (error) {
             console.erro(error)

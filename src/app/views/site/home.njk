@@ -28,15 +28,15 @@
     <section class="banner"> 
         <div class="banner-content">
 
-            <h1>{{home.title}}</h1>
-            <img src="{{home.img}}" alt="Chef" id="chef">
-            <p>{{home.text}}</p>
+            <h1>As melhores receitas</h1>
+            <img src="images/chef.png" alt="Chef" id="chef">
+            <p>Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.</p>
 
         </div>
 
     </section>
 
-    {{section.recipes(home.subTitle, '' , '', '', items)}}    
+    {{section.recipes('Mais Acessadas', '' , '', '', items)}}    
 
     <div class="pagination"
         data-page={{pagination.page}}

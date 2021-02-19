@@ -1,22 +1,20 @@
 {% extends "admin/session/layout.njk" %}
 
+{% import "admin/parts/card.njk" as card %}
+
 {% block title %}
     <title>Login</title>
 {% endblock title %}
 
 {% block content %}
 
-<section class="login container form">
-    <form method="POST" action="/admin/users/login">
+{% call card.render('Iniciar Sessão', 'login') %}
 
-        <div class="header-session">
-            <div class="logo"> <a href="/"><img src="/images/logo.png" alt="logo"></a></div>
-            <h3>Iniciar Sessão</h3>
-        </div>
+<form method="POST" action="/admin/users/login">
 
-        <div class="fields">
-            {% include 'admin/session/fields.njk' %}
-        </div>
+    <div class="fields">
+        {% include 'admin/session/fields.njk' %}
+    </div>
 
 
     <div class="footer">
@@ -31,9 +29,8 @@
         </ul>
     </div>
 
-    </form>
-</section>
+</form>
 
-
+{% endcall %}
 
 {% endblock content %}

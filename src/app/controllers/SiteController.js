@@ -1,5 +1,6 @@
-const Chef = require ('../models/Chef')
 const LoadRecipesService = require('../services/LoadRecipesService')
+const LoadChefsService = require('../services/LoadChefsService')
+
 
 module.exports = {
 
@@ -114,26 +115,16 @@ module.exports = {
 
         try {
 
-        let chefs = await Chef.all()
+        const chefs = await LoadChefsService.load('Chefs', '')
 
-        async function getImage(fileId) {
-            let results = await Chef.files(fileId)
-            const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
-
-            return files[0]
-        }
-
-        const chefsPromise = chefs.map(async chef => {
-            chef.img = await getImage(chef.file_id)
-            return chef
+        if(!chefs) return res.render('site/chefs', {
+            error: 'Não há chefes cadastrados'
         })
 
-        chefs = await Promise.all(chefsPromise)
-
-        return res.render("site/chefs", {chefs})
+        return res.render("site/chefs", { chefs })
             
         } catch (error) {
-            console.erro(error)
+            console.error(error)
         }
     },
 

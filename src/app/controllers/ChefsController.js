@@ -1,37 +1,24 @@
 const Chef = require ('../models/Chef')
 const File = require('../models/File')
-const Recipe = require ('../models/Recipe')
 const User = require ('../models/User')
+
+const LoadChefsService = require('../services/LoadChefsService')
+
 
 module.exports = {
     async index(req, res) {
 
         try {
 
-            let chefs = await Chef.all()
+            const chefs = await LoadChefsService.load('Chefs', '')
 
             const { userId: id } = req.session
-
             const user = await User.findOne({ where: {id} })
 
             if (chefs == 0) return res.render("admin/chefs/index",{ 
                 user,
                 success: 'Não encontramos chefes cadastrados no momento'
              })
-
-            async function getImage(fileId) {
-                let results = await Chef.files(fileId)
-                const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
-
-                return files[0]
-            }
-
-            const chefsPromise = chefs.map(async chef => {
-                chef.img = await getImage(chef.file_id)
-                return chef
-            })
-
-            chefs = await Promise.all(chefsPromise)
 
             const { success, error } = req.session
 
@@ -85,48 +72,23 @@ module.exports = {
 
         try {
 
-            let results = await Chef.find(req.params.id)
+            const chef = await LoadChefsService.load('Chef', req.params.id)
 
             const { userId: id } = req.session
-
             const user = await User.findOne({ where: {id} })
 
-            const chef = results.rows[0]
             if (!chef) return res.render("admin/chefs/index", {
                 error: 'Chefe não encontrado'
             })
 
-            results = await Chef.files(chef.file_id)
-            let fileChef = results.rows[0]
-
-            fileChef = {
-                ...fileChef,
-                src: `${fileChef.path.replace("public", "")}`
-            }
-
-            results = await Chef.findRecipes(req.params.id)
-            let recipes = results.rows
-
-            async function getImage(recipeId) {
-                let results = await Recipe.files(recipeId)
-                const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
-
-                return files[0]
-            }
-
-            const recipesPromise = recipes.map(async recipe => {
-                recipe.img = await getImage(recipe.id)
-                return recipe
-            })
-
-            recipes = await Promise.all(recipesPromise)
+            const recipes = await LoadChefsService.load('ChefsRecipes', req.params.id)
 
             const { success, error } = req.session
 
             req.session.success = ""
             req.session.error = ""
 
-            return res.render("admin/chefs/show", { chef, recipes, fileChef, user, success, error})
+            return res.render("admin/chefs/show", { chef, recipes, user, success, error})
             
         } catch (error) {
             console.error(error)
@@ -136,21 +98,14 @@ module.exports = {
     async edit(req, res) {
 
         try {
-            let results = await Chef.find(req.params.id)
 
-            const chef = results.rows[0]
+            const chef = await LoadChefsService.load('Chef', req.params.id)
+
             if (!chef) return res.render("admin/chefs/index", {
                 error: 'Chefe não encontrado'
             })
-
-            results = await Chef.files(chef.file_id)
-            let files = results.rows
-            files = files.map(file => ({
-                ...file,
-                src: `${file.path.replace("public", "")}`
-            }))
             
-            return res.render("admin/chefs/edit", { chef, files })
+            return res.render("admin/chefs/edit", { chef })
 
         } catch (error) {
             console.error(error)

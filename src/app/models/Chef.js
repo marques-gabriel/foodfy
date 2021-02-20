@@ -48,10 +48,10 @@ module.exports = {
 
         try {
             return db.query(`
-            SELECT files.*, chefs
+            SELECT files.*, file_id
             FROM files
             LEFT JOIN chefs ON (files.id = chefs.file_id)
-            WHERE chefs.file_id = $1
+            WHERE chefs.id = $1
         `, [id])
 
         } catch(err) {

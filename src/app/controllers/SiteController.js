@@ -59,7 +59,7 @@ module.exports = {
             
             if (recipes == 0) return res.render("site/recipes",{ 
                 filter,
-                error: 'Não encontramos receitas com esse termo'
+                error: 'Não encontramos receitas'
              })
 
 
@@ -117,7 +117,7 @@ module.exports = {
 
         const chefs = await LoadChefsService.load('Chefs', '')
 
-        if(!chefs) return res.render('site/chefs', {
+        if(chefs == 0) return res.render('site/chefs', {
             error: 'Não há chefes cadastrados'
         })
 

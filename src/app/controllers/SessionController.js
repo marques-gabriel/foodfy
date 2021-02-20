@@ -107,7 +107,7 @@ module.exports = {
             return res.render("admin/session/password-reset", {
                 user: req.body,
                 token,
-                success: "Algo erro ocorreu ao atualizar sua senha. Tente novamente!"
+                success: "Algum erro ocorreu ao atualizar sua senha. Tente novamente!"
             })
         }
     }

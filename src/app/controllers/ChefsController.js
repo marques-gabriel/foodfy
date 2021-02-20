@@ -131,15 +131,12 @@ module.exports = {
                 })
             
             } else {
-                let results = await Chef.find(req.body.id)
-                const chef = results.rows[0]
 
-                results = await Chef.files(chef.file_id)
-                let fileId = results.rows[0].id
+                const chef = await LoadChefsService.load('Chef', chefId)
 
                 await Chef.update(chefId, {
                     name: req.body.name,
-                    file_id: fileId
+                    file_id: chef.files[0].id
                 })
             }
 
@@ -168,13 +165,9 @@ module.exports = {
 
         try {
 
-            let results = await Chef.find(req.body.id)
-            const chef = results.rows[0]
+            const chef = await LoadChefsService.load('Chef', req.body.id)
 
-            results = await Chef.files(chef.file_id)
-            let files = results.rows
-
-            await Chef.delete(req.body.id, files)
+            await Chef.delete(req.body.id, chef.files)
 
             req.session.success = "Chefe deletado com sucesso"
 

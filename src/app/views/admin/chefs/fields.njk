@@ -21,7 +21,7 @@
 
   <div id="avatar-preview">
       {% if chef.img %}
-        <div class="photo" id={{chef.img.id}}>
+        <div class="photo" id={{chef.files[0].id}}>
           <img src="{{chef.img}}" alt="{{chef.name}}">
           <i class="material-icons"
                 onclick="PhotosUpload.removeOldPhoto(event)"

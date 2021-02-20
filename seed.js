@@ -43,7 +43,7 @@ async function createChefs() {
 
         files.push({
             name: faker.image.image(),
-            path: `public/images/chef.png`
+            path: `public/images/chefe.png`
         })
     }
   
@@ -78,7 +78,7 @@ async function createRecipes() {
 
         files.push({
             name: faker.image.image(),
-            path: `public/images/pizza.png`
+            path: `public/images/receita.png`
         })
     }
   

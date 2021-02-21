@@ -1,7 +1,10 @@
 <h1 align="center">
     <img alt="Foodfy" title="Foodfy" src="./public/assets/banner.png"/>
     <br />
+    ---
     <img alt="Foodfy" title="Foodfy" src="./public/assets/foodfy-site.gif"/>
+    <br />
+    ---
     <img alt="Foodfy" title="Foodfy" src="./public/assets/foodfy-admin.gif" />
 </h1>
 

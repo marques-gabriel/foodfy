@@ -1,13 +1,17 @@
-<p align="center" width="100%">
+<h1 align="center">
+    <img alt="Foodfy" title="Foodfy" src="./public/assets/banner.png" />
+</h1>
+
+---
+
+<p align="center">
   <img src="https://img.shields.io/badge/feito%20por-Gabriel%20Marques-black">
   <img src="https://img.shields.io/badge/languages-4-7159c1">
   <img src="https://img.shields.io/badge/license-MIT-black">
   <img src="https://img.shields.io/badge/status-Conclu%C3%ADdo-brightgreen">
 </p>
 
-<h1 align="center">
-    <img alt="Foodfy" title="Foodfy" src="./public/assets/banner.png" />
-</h1>
+---
 
 <p align="center">
  <a href="#-sobre-o-projeto">Sobre</a> •
@@ -59,8 +63,7 @@ O Bootcamp foi uma experiência online com muito conteúdo prático e desafios p
 ### 💡 Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
-Um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/). Além disso, será preciso ter o [Postgres](https://www.postgresql.org/) instalado para criação do banco de dados.
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), e umm editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/).  Além disso, será preciso ter o [Postgres](https://www.postgresql.org/) instalado para criação do banco de dados.
 
 #### 🎲 Rodando o Backend (servidor)
 
@@ -88,7 +91,7 @@ $ edite o arquivo mailer.js dentro da pasta scr/lib com suas credenciais (mailtr
 $ npm start
 
 ```
-**__Não exclua ou altere as imagens chefe.png e receita.png da pasta plublic/images, pois as receitas e chefs gerados pelo seed.js compartilham desses arquivos entre si. Caso tenha excluído, elas também estão disponíveis na pasta assets Então crie novos chefs e receitas antes de testar a aplicação com edição e remoção de receitas e chefes.__**
+**__💡  Não exclua ou altere as imagens chefe.png e receita.png da pasta plublic/images, pois as receitas e chefs gerados pelo seed.js compartilham desses arquivos entre si. Caso tenha excluído, elas também estão disponíveis na pasta assets. Então crie novos chefs e receitas antes de testar a aplicação com edição e remoção de receitas e chefes 💡__**
 
 **Senha padrão para acesso de todo usuário: __12345__**
 
@@ -142,6 +145,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 Este projeto esta sobe a licença [MIT](./LICENSE).
 
-Feito com 💜  por Gabriel Marques 👋🏽 [Entre em contato!](https://www.linkedin.com/in/marques-gabriel/)
+Feito com  💜   por Gabriel Marques 👋🏽  [Entre em contato!](https://www.linkedin.com/in/marques-gabriel/)
 
 ---

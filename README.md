@@ -1,6 +1,11 @@
 <h1 align="center">
-    <img alt="Foodfy" title="Foodfy" src="./public/assets/banner.png" />
+    <img alt="Foodfy" title="Foodfy" src="./public/assets/banner.png"/>
+    <br />
+    <img alt="Foodfy" title="Foodfy" src="./public/assets/foodfy-site.gif"/>
+    <img alt="Foodfy" title="Foodfy" src="./public/assets/foodfy-admin.gif" />
 </h1>
+
+<br />
 
 <p align="center">
   <img src=https://img.shields.io/static/v1?label=languages&message=4&color=7159c1&style=for-the-badge>
@@ -8,6 +13,8 @@
   <img src=https://img.shields.io/static/v1?label=license&message=MIT&color=black&style=for-the-badge>
   <img src=https://img.shields.io/static/v1?label=status&message=Conclu%C3%ADdo&color=brightgreen&style=for-the-badge>
 </p>
+
+<br />
 
 <p align="center">
  <a href="#-sobre-o-projeto">Sobre</a> •
@@ -28,7 +35,7 @@
 Projeto final para conclusão do **Bootcamp Launchbase** oferecido pela [Rocketseat](https://rocketseat.com.br/).
 O Bootcamp foi uma experiência online com muito conteúdo prático e desafios para dominar programação web do zero.
 
-***
+---
 
 ## ⚙️ Funcionalidades
 
@@ -73,7 +80,7 @@ O Bootcamp foi uma experiência online com muito conteúdo prático e desafios p
 ### 💡 Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), e umm editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/).  Além disso, será preciso ter o [Postgres](https://www.postgresql.org/) instalado para criação do banco de dados.
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), e um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/).  Além disso, será preciso ter o [Postgres](https://www.postgresql.org/) instalado para criação do banco de dados.
 
 #### 🎲  Rodando o Backend (servidor)
 
@@ -101,9 +108,11 @@ $ edite o arquivo mailer.js dentro da pasta scr/lib com suas credenciais (mailtr
 $ npm start
 
 ```
-**__💡  Não exclua ou altere as imagens chefe.png e receita.png da pasta plublic/images, pois as receitas e chefs gerados pelo seed.js compartilham desses arquivos entre si. Caso tenha excluído, elas também estão disponíveis na pasta assets. Então crie novos chefs e receitas antes de testar a aplicação com edição e remoção de receitas e chefes 💡__**
+**💡  Não exclua ou altere as imagens chefe.png e receita.png da pasta plublic/images, pois as receitas e chefs gerados pelo seed.js compartilham desses arquivos entre si. Caso tenha excluído, elas também estão disponíveis na pasta assets.**
 
-**Senha padrão para acesso de qualquer usuário: __12345__**
+**__Crie novos chefs e receitas antes de testar a aplicação com edição e remoção de receitas e chefes__**
+
+**Clique em LOGIN no footer do site para acessar a área administrativa. Senha padrão para acesso de qualquer usuário: _12345_** 💡
 
 ---
 

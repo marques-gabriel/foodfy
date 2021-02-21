@@ -2,16 +2,13 @@
     <img alt="Foodfy" title="Foodfy" src="./public/assets/banner.png" />
 </h1>
 
----
-
 <p align="center">
-  <img src="https://img.shields.io/badge/feito%20por-Gabriel%20Marques-black">
-  <img src="https://img.shields.io/badge/languages-4-7159c1">
-  <img src="https://img.shields.io/badge/license-MIT-black">
-  <img src="https://img.shields.io/badge/status-Conclu%C3%ADdo-brightgreen">
+  <img src=https://img.shields.io/static/v1?label=last%20commit&message=February%202021&color=7159c1&style=for-the-badge>
+  <img src=https://img.shields.io/static/v1?label=feito%20por:&message=Gabriel%20Marques&color=black&style=for-the-badge>
+  <img src=https://img.shields.io/static/v1?label=languages&message=4&color=7159c1&style=for-the-badge>
+  <img src=https://img.shields.io/static/v1?label=license&message=MIT&color=black&style=for-the-badge>
+  <img src=https://img.shields.io/static/v1?label=status&message=Conclu%C3%ADdo&color=brightgreen&style=for-the-badge>
 </p>
-
----
 
 <p align="center">
  <a href="#-sobre-o-projeto">Sobre</a> •
@@ -34,6 +31,17 @@ O Bootcamp foi uma experiência online com muito conteúdo prático e desafios p
 
 ## ⚙️ Funcionalidades
 
+-   **Sistema de login e recuperação de senha**
+-   **Upload de imagens com multer**
+-   **Páginas dinâmicas com Nunjucks**
+-   **Área administrativa**
+-   **Envio de email com Nodemailer**
+-   **Animações com Lottie**
+-   **Banco de dados PostgreSQL**
+-   **Busca de receitas com paginação**
+-   **etc**
+
+
 - [x] Usuários cadastrados no site podem:
   - [x] criar suas próprias receitas, associando-as aos chefes cadastrados no site
   - [x] editar ou excluir suas receitas cadastradas
@@ -54,7 +62,7 @@ O Bootcamp foi uma experiência online com muito conteúdo prático e desafios p
 - [x] Site pode ser acessado por qualquer usuário não cadastrado, podendo:
     - visualizar todas receitas cadastradas no site e seus detalhes
     - visualizar todos chefes cadastrados e quantidade de receitas
-    - realizar busca de receitas, incluindo paginação.
+    - realizar pesquisa de receitas.
 
 ---
 
@@ -65,7 +73,7 @@ O Bootcamp foi uma experiência online com muito conteúdo prático e desafios p
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), e umm editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/).  Além disso, será preciso ter o [Postgres](https://www.postgresql.org/) instalado para criação do banco de dados.
 
-#### 🎲 Rodando o Backend (servidor)
+#### 🎲  Rodando o Backend (servidor)
 
 ```bash
 
@@ -131,20 +139,20 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 ---
 
-## 🦸 Autor
+## 👨🏽‍💻 Autor
 
 <a href="https://github.com/marques-gabriel">
  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/59850744?s=400&u=6ee39d4a57ffa11d755dd0e391396224b66f11f8&v=4" width="100px;" alt=""/>
  <br />
- <sub><b>Gabriel Marques</b></sub></a> <a href="https://www.linkedin.com/in/marques-gabriel/"">🚀</a>
+ <sub><b>Gabriel Marques</b></sub></a> <a href="https://www.linkedin.com/in/marques-gabriel/"">🚀 </a>
  <br />
 
 ---
 
 ## 📝 Licença
 
-Este projeto esta sobe a licença [MIT](./LICENSE).
+Este projeto está sob a licença [MIT](./LICENSE).
 
-Feito com  💜   por Gabriel Marques 👋🏽  [Entre em contato!](https://www.linkedin.com/in/marques-gabriel/)
+♥ Feito por Gabriel Marques 👋🏽  [Entre em contato!](https://www.linkedin.com/in/marques-gabriel/)
 
 ---

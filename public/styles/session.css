@@ -57,7 +57,8 @@ section.password.container form button {
     margin-left: auto;
 }
 
-section.password.container form {
+section.password.container form,
+section.login.container form {
     margin-bottom: 150px;
 }
 

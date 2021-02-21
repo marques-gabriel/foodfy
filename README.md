@@ -96,6 +96,10 @@ $ npm install
 # Conexão com o banco de dados
 $ edite o arquivo "db.js" dentro da pasta "src/config" com o user e password Postgres
 
+# Inicie o postgres com o comando abaixo:
+$ mac: pg_ctl -D /usr/local/var/postgres start
+$ windows: .\pg_ctl.exe -D "C:\Program Files\PostgreSQL\12\data" start (navegar até a pasta de instalação antes de iniciar - Navegue até a pasta bin PostgreSQL) Caso a sua versão instalada seja outra, atente-se ao número da versão na pasta acima. Troque o 12 pela versão relativa ao seu postgres.
+
 # Criar o banco de dados e as tabelas
 $ utilize os comandos inclusos no arquivo database.sql 
 
@@ -113,7 +117,9 @@ $ npm start
 
 **__Crie novos chefs e receitas antes de testar a aplicação com edição e remoção de receitas e chefes__**
 
-**Clique em LOGIN no footer do site para acessar a área administrativa. Senha padrão para acesso de qualquer usuário: _12345_** 💡
+**Clique em LOGIN no footer do site para acessar a área administrativa. Senha padrão para acesso de qualquer usuário: _12345_**
+
+**Dica: Use o [Postbird](https://github.com/Paxa/postbird) - PostgreSQL GUI client, para visualizar o conteúdo das tabelas** 💡
 
 ---
 
@@ -158,6 +164,8 @@ As seguintes ferramentas foram usadas na construção do projeto:
  <br />
  <sub><b>Gabriel Marques</b></sub></a> <a href="https://www.linkedin.com/in/marques-gabriel/"">🚀   </a>
  <br />
+
+ [![Instagram Badge](https://img.shields.io/badge/-Gabriel%20Marques-D92F66?style=flat-square&logo=Instagram&logoColor=white&link=https://www.instagram.com/marquesgabriel__/)](https://instagram.com/marquesgabriel__) [![Linkedin Badge](https://img.shields.io/badge/-Gabriel%20Marques-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/marques-gabriel/)](https://www.linkedin.com/in/marques-gabriel/) 
 
 ---
 

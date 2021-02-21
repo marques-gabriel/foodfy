@@ -2,11 +2,11 @@
   <img src="https://img.shields.io/badge/feito%20por-Gabriel%20Marques-black">
   <img src="https://img.shields.io/badge/languages-4-7159c1">
   <img src="https://img.shields.io/badge/license-MIT-black">
-  <img src="  https://img.shields.io/badge/status-Conclu%C3%ADdo-brightgreen">
+  <img src="https://img.shields.io/badge/status-Conclu%C3%ADdo-brightgreen">
 </p>
 
 <h1 align="center">
-    <img alt="Foodfy" title="Foodfy" src="./assets/banner.png" />
+    <img alt="Foodfy" title="Foodfy" src="./public/assets/banner.png" />
 </h1>
 
 <p align="center">
@@ -110,6 +110,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 -   **[BcryptJS](https://github.com/dcodeIO/bcrypt.js)**
 -   **[Faker](https://github.com/Marak/Faker.js)**
 -   **[Nodemon](https://www.npmjs.com/package/nodemon)**
+-   **[Lottie-web](https://github.com/airbnb/lottie-web)**
 -   **[Method-override](https://www.npmjs.com/package/method-override)**
 -   **[Npm-run-all](https://www.npmjs.com/package/npm-run-all)**
 -   **[browser-sync](https://www.npmjs.com/package/browser-sync)**

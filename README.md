@@ -1,4 +1,4 @@
-<p align="center">
+<p align="center" width="100%">
   <img src="https://img.shields.io/badge/feito%20por-Gabriel%20Marques-black">
   <img src="https://img.shields.io/badge/languages-4-7159c1">
   <img src="https://img.shields.io/badge/license-MIT-black">
@@ -23,7 +23,7 @@
 
 🍕 Foodfy - aplicação web para explorar receitas, gerenciar o cadastro de receitas, chefes e usuários.
 
-Projeto desenvolvido durante a **Bootcamp Launchbase** oferecido pela [Rocketseat](https://rocketseat.com.br/).
+Projeto final para conclusão do **Bootcamp Launchbase** oferecido pela [Rocketseat](https://rocketseat.com.br/).
 O Bootcamp foi uma experiência online com muito conteúdo prático e desafios para dominar programação web do zero.
 
 ***
@@ -98,7 +98,7 @@ $ npm start
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
--   **[NodeJS](https://nodejs.org/en/**
+-   **[NodeJS](https://nodejs.org/en/)**
 -   **[Express](https://expressjs.com/)**
 -   **[Express-session](https://github.com/expressjs/session)**
 -   **[Nunjucks](https://mozilla.github.io/nunjucks/)**

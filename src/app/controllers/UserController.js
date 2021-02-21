@@ -81,6 +81,9 @@ module.exports = {
             
         } catch (error) {
             console.error(error)
+            return res.render("admin/users/index", {
+                error: "Algum erro ocorreu ao criar usuário"
+            })
         }
     },
 
@@ -109,7 +112,7 @@ module.exports = {
         } catch (error) {
             console.error(error)
             return res.render("admin/users/index", {
-                error: "Algum erro ocorreu"
+                error: "Algum erro ocorreu ao atualizar usuário"
             })
         }
 
